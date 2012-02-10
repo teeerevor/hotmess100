@@ -18,7 +18,13 @@ Hotmess100.controllers :artists do
   #   "Hello world!"
   # end
 
-  get :index do
-  end
 
+  get :index, :provides => [:html, :js] do
+    @artists = Artist.all(:order => 'name')
+    case content_type
+    when :js then @songs.to_json
+    else
+      render 'artists/index'
+    end
+  end
 end

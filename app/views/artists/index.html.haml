@@ -1,0 +1,5 @@
+%ul
+  - @artists.each do |artist|
+    - artist.songs.each do |song|
+      %li
+        #{artist.name} - #{song.name}
