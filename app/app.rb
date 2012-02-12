@@ -5,6 +5,11 @@ class Hotmess100 < Padrino::Application
 
   enable :sessions
 
+  # Sprockets support
+  require 'sprockets'
+  register Padrino::Sprockets
+  sprockets
+
   ##
   # Caching support
   #

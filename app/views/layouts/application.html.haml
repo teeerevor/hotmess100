@@ -3,12 +3,11 @@
   %head
     %title
       Hotmess 100
+    = stylesheet_link_tag '/assets/application'
 
   %body
-    We have a body
 
     = yield
 
     = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'
-    = javascript_include_tag 'underscore-min'
-    = javascript_include_tag 'backbone-min'
+    = javascript_include_tag '/assets/application'

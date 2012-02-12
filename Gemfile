@@ -20,6 +20,11 @@ gem 'rack-test', :require => "rack/test", :group => "test"
 # Padrino Stable Gem
 gem 'padrino', '0.10.5'
 
+# Use Sprockets
+gem 'padrino-sprockets', :require => 'padrino/sprockets'
+
+# Use Coffeescript
+gem 'coffee-script'
 
 # Or Padrino Edge
 # gem 'padrino', :git => 'git://github.com/padrino/padrino-framework.git'
