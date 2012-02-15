@@ -6,4 +6,12 @@
 //
 //= require underscore-min
 //= require backbone-min
+//= require handlebars-1.0.0.beta6
+//= require backbone
+//= require backbone/templates/song
+//= require backbone/models
+//= require backbone/collections
+//= require backbone/views
 //= require_tree .
+//
+

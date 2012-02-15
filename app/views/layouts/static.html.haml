@@ -6,20 +6,9 @@
     = stylesheet_link_tag '/assets/application'
 
   %body
-    %h1 Hotmess 100
-
-    %section#short_list
-      %h2
-        Short List
-      %ol
-
-    %section#song_list
-      %h2
-        Artist List
-      %ol
 
     = yield
 
     = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'
     = javascript_include_tag '/assets/application'
-    = yield_content :js
+    = yield :js

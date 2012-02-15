@@ -25,6 +25,11 @@ gem 'padrino-sprockets', :require => 'padrino/sprockets'
 
 # Use Coffeescript
 gem 'coffee-script'
+gem 'ejs'
+gem 'pry'
+gem 'pry-nav'
+
+gem 'rabl'
 
 # Or Padrino Edge
 # gem 'padrino', :git => 'git://github.com/padrino/padrino-framework.git'
