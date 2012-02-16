@@ -2,10 +2,10 @@
   :javascript
     $(function(){
       window.temp = #{@song_list_json}
-      //window.songs = new Hotmess.Collections.Songs(temp);
-      //window.songList = new Hotmess.Views.SongsListView({collection: songs});
+      window.songs = new Hotmess.Collections.Songs(temp);
+      window.songList = new Hotmess.Views.SongsListView({collection: songs});
       //window.shortList = new Hotmess.Views.ShortListView();
 
-      //$('#song_list').html(songList.render().el);
+      $('#song_list').append(songList.render().el);
       //$('#short_list').html(shortList.render().el);
     });

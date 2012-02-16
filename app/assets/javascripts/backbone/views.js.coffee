@@ -4,23 +4,25 @@ class window.Hotmess.Views.SongView extends Backbone.View
   initalize: ->
     @model.bind 'reset', @render
 
+  template: (model)->
+    tp = Handlebars.compile(Hotmess.Templates.Song)
+    return tp(model)
+
   render: ->
-    template = Handlebars.compile(Hotmess.Templates.Song)
-    $(@el).html(template(@model.toJSON()))
+    $(@el).html(@template(@model.toJSON()))
     @
 
 class window.Hotmess.Views.SongsListView extends Backbone.View
-  tagName: 'section'
-  id:  'song_list'
+  tagName:    'ol'
+  className:  'song_list'
 
   render: ->
-    $(@el).find('ul').empty()
+    $(@el).empty()
     for song in @collection.models
       songView = new Hotmess.Views.SongView({model: song})
-      $(@el).find('ul').append songView.render().el
+      $(@el).append songView.render().el
     @
 
 
-class window.Hotmess.Views.ShortListView extends Hotmess.Views.SongListView
-  id:  'short_list'
-
+class window.Hotmess.Views.ShortListView extends Hotmess.Views.SongsListView
+  className:  'short_list'
