@@ -1,11 +1,11 @@
 - content_for :js do
   :javascript
     $(function(){
-      window.temp = #{@song_list_json}
-      window.songs = new Hotmess.Collections.Songs(temp);
-      window.songList = new Hotmess.Views.SongsListView({collection: songs});
-      //window.shortList = new Hotmess.Views.ShortListView();
+      window.songsList = new Hotmess.Collections.Songs(#{@song_list_json});
+      window.songListView = new Hotmess.Views.SongsListView({collection: songsList});
+      window.shortList = new Hotmess.Collections.Songs();
+      window.shortListView = new Hotmess.Views.ShortListView({collection: shortList});
 
-      $('#song_list').append(songList.render().el);
-      //$('#short_list').html(shortList.render().el);
+      $('#song_list').append(songListView.render().el);
+      $('#short_list').append(shortListView.render().el);
     });

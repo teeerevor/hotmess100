@@ -1,4 +1,5 @@
 .song
+  position: relative
   overflow: hidden
   margin-top: 3px
   padding: 10px
@@ -7,13 +8,13 @@
   -moz-border-radius: 15px
   border-radius: 15px
 
-  img
-    display:block
-    float: left
-    width: 100px
-    -webkit-border-radius: 5px
-    -moz-border-radius: 5px
-    border-radius: 5px
+  //img
+    //display:block
+    //float: left
+    //width: 100px
+    //-webkit-border-radius: 5px
+    //-moz-border-radius: 5px
+    //border-radius: 5px
 
   .song_details
     float: left
@@ -21,3 +22,16 @@
     h2
       margin: 20px 0 20px
 
+  .buttons
+    position: absolute
+    bottom: 5px
+    right: 10px
+
+
+#song_list
+  button.remove, button.move_to_pos
+    display: none
+
+#short_list
+  button.short_list_song, .short_list_to_pos
+    display: none

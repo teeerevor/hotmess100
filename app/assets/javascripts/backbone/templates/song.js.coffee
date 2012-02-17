@@ -1,9 +1,12 @@
 window.Hotmess.Templates.Song = "
-<li class='song'>
-  <img src='http://dl.dropbox.com/u/1540108/Hottest100/san_cisco.jpg' />
-  <div class='song_details'>
-    <h2 class='song_name'>{{name}}</h2>
-    <h3 class='artist_name'>{{artist.name}}</h3>
-  <div>
-</li>
+<div class='song_details'>
+  <h3 class='song_name'>{{name}}</h3>
+  <h4 class='artist_name'>{{artist.name}}</h4>
+<div>
+<div class='buttons'>
+  <button class='short_list_song' title='Short list song'>+</button>
+  <button class='short_list_to_pos' title='Short list at position'>>-</button>
+  <button class='move_to_pos' title='Move to position'>>-</button>
+  <button class='remove' title='Short list at position'>X</button>
+</div>
 "
