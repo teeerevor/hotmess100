@@ -3,7 +3,11 @@
     %h3.song_name {{name}}
     %h4.artist_name {{artist.name}}
   .buttons
-    %button.short_list_song{:title => "Short list song"} +
-    %button.short_list_to_pos{:title => "Short list at position"} >-
-    %button.move_to_pos{:title => "Move to position"} >-
-    %button.remove{:title => "Short list at position"} &times;
+    %button.short_list_to_pos.button.black{:title => "Short list at position"}
+      %img{:src => '/assets/up.png'}
+    %button.short_list_song.button.black{:title => "Short list song"}
+      %img{:src => '/assets/plus.png'}
+    %button.move_to_pos.button.black{:title => "Move to position"}
+      %img{:src => '/assets/up.png'}
+    %button.remove.button.black{:title => "Short list at position"}
+      %img{:src => '/assets/cross.png'}
