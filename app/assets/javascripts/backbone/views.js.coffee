@@ -20,7 +20,7 @@ class window.Hotmess.Views.SongView extends Backbone.View
     window.shortList.remove(@model)
 
   template: (model)->
-    tp = Handlebars.compile(Hotmess.Templates.Song)
+    tp = Handlebars.compile($('#song-template').html())
     tp(model)
 
   render: ->
