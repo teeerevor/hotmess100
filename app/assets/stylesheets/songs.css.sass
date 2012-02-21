@@ -1,20 +1,36 @@
+@import "mixins.css.sass"
+
 .song
   min-width: 480px
   padding-right: 118px
-  overflow: hidden
-  margin-top: 3px
-  border: solid #f00 1px
+  margin-top: 2px
+  //border: solid #f00 1px
+  @include clearfix
 
-  div
+  & > div
     position: relative
     float: left
 
   .song_details
-    width: 100%
+    width: 97%
+    height: 40px
+    margin-right: 5px
+    padding: 11px 15px
     background-color: #eee
-    -webkit-border-radius: 5px
-    -moz-border-radius: 5px
-    border-radius: 5px
+    -webkit-border-radius: 10px
+    -moz-border-radius: 10px
+    border-radius: 10px
+
+    .song_name
+      display: inline-block
+      font-weight: bold
+
+    .artist_name
+      display: inline-block
+      color: #666
+      &:before
+        content: "-"
+        margin-right: 5px
 
   //img
     //display:block
@@ -25,16 +41,24 @@
     //border-radius: 5px
 
   .buttons
-    width: 118px
-    margin-right: -118px
-    //height: 44px
-    //bottom: 5px
-    //right: 10px
+    width: 125px
+    margin-right: -125px
+    //border: solid #00f 1px
 
     button
       margin: 0 -1px
       font-size: 1.6em
       padding: 0.35em 0.7em 0.40em
+
+
+
+@media only screen and (max-width: 800px), only screen and (max-device-width: 480px)
+  .song
+    .song_details
+      .song_name
+        display: block
+      .song_name
+        display: block
 
 
 #song_list
@@ -44,3 +68,43 @@
 #short_list
   button.short_list_song, .short_list_to_pos
     display: none
+
+#short_list
+  li
+    background-color: transparent
+  ol
+    counter-reset: li /* Initiate a counter */
+    list-style: none /* Remove default numbering */
+    *list-style: decimal /* Keep using default numbering for IE6/7 */
+    padding: 0
+    margin-bottom: 4em
+    text-shadow: 0 1px 0 rgba(255,255,255,.5)
+
+  li:nth-child(-n+10)
+    .song_details
+      position: relative
+      display: block
+      width: 95%
+      padding: 11px 15px 11px 30px
+      *padding: .4em
+      margin-left: 1em
+      margin-top: 0
+      transition: all .3s ease-out
+
+
+    .song_details:before
+      content: counter(li)
+      counter-increment: li
+      position: absolute
+      left: -1.3em
+      top: 50%
+      margin-top: -1.3em
+      background: #EE736D /*#87ceeb*/
+      height: 2em
+      width: 2em
+      line-height: 2em
+      border: .3em solid #fff
+      text-align: center
+      font-weight: bold
+      border-radius: 2em
+      transition: all .3s ease-out

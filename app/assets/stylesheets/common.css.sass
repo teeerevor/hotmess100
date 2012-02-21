@@ -1,5 +1,6 @@
 body
   font-family: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif
+  min-width: 480px
 
 
 h1
@@ -20,5 +21,11 @@ section
   margin-left: 20px
 
 #song_list
-  float: right
+  float: left
   margin-right: 20px
+
+@media only screen and (max-width: 800px), only screen and (max-device-width: 480px)
+  section#song_list, section#short_list
+    float: none
+    width: 100%
+
