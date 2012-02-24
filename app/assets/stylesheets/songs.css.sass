@@ -32,13 +32,8 @@
         content: "-"
         margin-right: 5px
 
-  //img
-    //display:block
-    //float: left
-    //width: 100px
-    //-webkit-border-radius: 5px
-    //-moz-border-radius: 5px
-    //border-radius: 5px
+    img, .desc
+      display: none
 
   .buttons
     width: 125px
@@ -51,6 +46,12 @@
       padding: 0.35em 0.7em 0.40em
 
 
+  &.expanded
+    .song_details
+      height: 480px
+
+      img, .desc
+        display: block
 
 @media only screen and (max-width: 800px), only screen and (max-device-width: 480px)
   .song

@@ -2,6 +2,10 @@
   .song_details
     %h3.song_name {{name}}
     .artist_name {{artist.name}}
+    #youtube_clip
+    -#%img{src:"{{artist.image}}"}
+    .desc
+      {{artist.desc}}
   .buttons
     %button.short_list_to_pos.button.black{:title => "Short list at position"}
       %img{:src => '/assets/up.png'}

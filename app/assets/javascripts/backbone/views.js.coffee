@@ -6,9 +6,22 @@ class window.Hotmess.Views.SongView extends Backbone.View
     'click .short_list_song'   : 'add_to_short_list'
     'click .short_list_to_pos' : 'add_to_short_list_at'
     'click .remove'            : 'remove_from_short_list'
+    'click .song_details'      : 'expand_song'
 
   initialize: ->
     @model.bind 'reset', @render
+
+  render: ->
+    $(@el).html(@template(@model.toJSON()))
+    @
+
+  template: (model)->
+    tp = Handlebars.compile($('#song-template').html())
+    tp(model)
+
+  youtube_template: (model)->
+    tp = Handlebars.compile($('#youtube-template').html())
+    tp(model)
 
   add_to_short_list: ->
     window.shortList.add(@model)
@@ -19,13 +32,13 @@ class window.Hotmess.Views.SongView extends Backbone.View
   remove_from_short_list: ->
     window.shortList.remove(@model)
 
-  template: (model)->
-    tp = Handlebars.compile($('#song-template').html())
-    tp(model)
+  expand_song: ->
+    $(@el).toggleClass('expanded')
+    if $(@el).hasClass('expanded')
+      $(@el).find('#youtube_clip').html(@youtube_template(@model.toJSON()))
+    else
+      $(@el).find('#youtube_clip').empty()
 
-  render: ->
-    $(@el).html(@template(@model.toJSON()))
-    @
 
 class window.Hotmess.Views.SongsListView extends Backbone.View
   tagName:    'ol'
