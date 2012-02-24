@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 2) do
+ActiveRecord::Schema.define(:version => 3) do
 
   create_table "artists", :force => true do |t|
     t.string "name"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(:version => 2) do
     t.integer "artist_id"
     t.text    "desc"
     t.integer "year"
+    t.string  "youtube_url"
+    t.string  "soundcloud_url"
   end
 
 end
