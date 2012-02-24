@@ -35,9 +35,10 @@ class window.Hotmess.Views.SongView extends Backbone.View
   expand_song: ->
     $(@el).toggleClass('expanded')
     if $(@el).hasClass('expanded')
-      $(@el).find('#youtube_clip').html(@youtube_template(@model.toJSON()))
+      $(@el).find('.youtube_clip').html(@youtube_template(@model.toJSON()))
+      $('.youtube_clip').fitVids()
     else
-      $(@el).find('#youtube_clip').empty()
+      $(@el).find('.youtube_clip').empty()
 
 
 class window.Hotmess.Views.SongsListView extends Backbone.View
