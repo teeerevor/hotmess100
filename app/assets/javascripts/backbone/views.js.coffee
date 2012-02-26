@@ -16,6 +16,8 @@ class window.Hotmess.Views.SongView extends Backbone.View
     @
 
   template: (model)->
+    Handlebars.registerHelper 'first_letter', (str)->
+      str.charAt(0)
     tp = Handlebars.compile($('#song-template').html())
     tp(model)
 

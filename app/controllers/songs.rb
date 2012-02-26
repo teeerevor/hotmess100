@@ -19,8 +19,8 @@ Hotmess100.controllers :songs do
   # end
 
   get :index, :provides => [:html, :js] do
-    @songs = Song.all(:include => :artist, :order => 'songs.name', :limit => 20)
-    @song_list_json = @songs.to_json(:include => :artist)
+    @songs = Song.all(:include => :artist, :order => 'songs.name', :limit => 500)
+    @song_list_json = @songs.to_json(:include => :artist, :methods => :short_desc)
     case content_type
     when :js then @song_list_json
     else

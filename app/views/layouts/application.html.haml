@@ -12,12 +12,23 @@
       (Hottest100 messed with, for the better)
 
     %section#short_list
+      %a{name:'short_list'}
       %h2
         Short List
 
     %section#song_list
       %h2
         All Songs
+
+    %nav.list_index
+      %ol
+        %li
+          %a{href:"#short_list"}
+            Short List
+        - ('a'..'z').each do |letter|
+          %li
+            %a{href:"##{letter.upcase}"}
+              =letter.upcase
 
     = yield
 
