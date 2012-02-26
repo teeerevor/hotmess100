@@ -6,10 +6,18 @@ class Artist < ActiveRecord::Base
     self.name
   end
 
+  def name_plused
+    the_name_fix.strip.gsub(/\s+/, '+')
+  end
+
   def short_desc
-    if desc && desc.size > 500
-      return desc[0..500].to_s + '...'
+    if desc && desc.size > 400
+      return desc[0..400].to_s + '...'
     end
     desc
+  end
+
+  def content_link
+    "http://www.last.fm/music/#{name_plused}"
   end
 end

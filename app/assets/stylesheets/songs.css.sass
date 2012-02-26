@@ -15,8 +15,7 @@
     width: 97%
     height: 40px
     margin-right: 5px
-    padding: 11px 15px
-    overflow: hidden
+    padding: 11px 20px
     background-color: #eee
     -webkit-border-radius: 10px
     -moz-border-radius: 10px
@@ -36,15 +35,24 @@
     img, .desc
       display: none
 
+    a
+      text-decoration: none
+      color: $font-color
     .desc
-      margin: 10px 5px
+      padding: 5px
       overflow: hidden
       font-size: 0.9em
       font-family: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif
       line-height: 1.2em
+      &:hover
+        background-color: #ccc
+        cursor: pointer
+        -webkit-border-radius: 5px
+        -moz-border-radius: 5px
+        border-radius: 5px
 
     .youtube_clip
-      margin: 10px 5px
+      margin: 14px 0px 5px
 
   .buttons
     width: 125px
