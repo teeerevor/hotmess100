@@ -36,18 +36,27 @@ namespace :lastfm_import do
   desc 'imports hottest 100 artist data from lastfm'
   task :run => :environment do
     LASTFM_API_KEY = '199ccc69045a31eb478889eb98f66cc5'
+    #Song.all(:include => :artist, :order => 'songs.name').each do |song|
     Artist.all.each do |artist|
+      #artist = song.artist
+      puts "artist = #{artist.the_name_fix}"
       url = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=#{URI.escape(artist.the_name_fix)}&api_key=#{LASTFM_API_KEY}"
       begin
-        doc = Nokogiri::HTML(open(url))
+        doc = Nokogiri::XML(open(url))
         artist.image = doc.css('image[@size="extralarge"]').first.text
-        artist.desc = doc.css('bio content').text
+        desc = doc.css('bio summary').text
+        if desc =~ /ID3 tags/i
+          puts '* fail *'
+          puts url
+          desc = 'fail'
+        end
+        #remove the htmls
+        artist.desc = desc.gsub(/<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/, '')
         artist.save
       rescue
-        puts "********** error ************"  
+        puts "********** error ************"
         puts url
       end
-        puts "artist = #{artist.name}"
     end
   end
 end
