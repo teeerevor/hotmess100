@@ -10,6 +10,7 @@ gem 'sinatra-flash', :require => 'sinatra/flash'
 
 # Component requirements
 gem 'haml'
+gem 'sass'
 gem 'activerecord', :require => "active_record"
 gem 'pg'
 
