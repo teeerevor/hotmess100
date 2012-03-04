@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 4) do
     t.integer "year"
     t.string  "youtube_url"
     t.string  "soundcloud_url"
+    t.string  "album_img_url"
   end
 
 end

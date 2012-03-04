@@ -2,6 +2,7 @@ require 'csv'
 require 'uri'
 require 'nokogiri'
 require 'open-uri'
+require 'googleajax'
 
 namespace :song_import do
   desc 'imports hottest 100 songs'
@@ -63,7 +64,7 @@ end
 
 
 namespace :youtube_url_fetch do
-  desc 'imports hottest 100 artist data from lastfm'
+  desc 'grabs youtube urls'
   task :run => :environment do
     Song.all.each do |song|
       puts "artist = #{song.artist.name}|#{song.name}"
@@ -79,6 +80,30 @@ namespace :youtube_url_fetch do
         puts "********** error ************"  
         puts "song = #{song.id}"
         puts url
+      end
+    end
+  end
+end
+
+namespace :album_art_url_fetch do
+  desc 'grabs album artwork from goog image search'
+  task :run => :environment do
+    GoogleAjax.referer = "hotmess100.io"
+    Song.all.each do |song|
+      puts "artist/song = #{song.artist.name}|#{song.name}"
+      puts "search_string = #{song.youtube_search_string}"
+      begin
+        GoogleAjax::Search.images(song.youtube_search_string+'+cover')[:results].each do |img|
+          if img[:width] == img[:height]
+            song.album_img_url = img[:url]
+            song.save
+            puts img[:url]
+            break
+          end
+        end
+      rescue
+        puts "********** error ************"  
+        puts "song = #{song.id}"
       end
     end
   end

@@ -6,6 +6,11 @@
     = stylesheet_link_tag '/assets/application'
 
   %body
+    %section#bg
+      - @songs.shuffle.each_with_index do |song, i|
+        - if song.album_img_url && i < 50
+          %img{src:song.album_img_url}
+
     %h1
       Hotmess100
     %span

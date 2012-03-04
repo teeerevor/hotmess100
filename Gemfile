@@ -30,6 +30,8 @@ gem 'coffee-script'
 
 gem 'rabl'
 gem 'nokogiri'
+gem 'googleajax'
+
 
 gem 'pry'
 gem 'pry-nav'
