@@ -11,6 +11,6 @@
 //= require backbone
 //= require backbone/models
 //= require backbone/collections
-//= require backbone/views
+//= require_folder backbone/views/
 //= require_tree .
 //

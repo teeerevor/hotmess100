@@ -11,13 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 4) do
+ActiveRecord::Schema.define(:version => 6) do
 
   create_table "artists", :force => true do |t|
     t.string "name"
     t.text   "desc"
     t.string "image"
-    t.string "lastfm_url"
+  end
+
+  create_table "short_listed_songs", :force => true do |t|
+    t.integer "short_list_id"
+    t.integer "song_id"
+    t.integer "position"
+  end
+
+  create_table "short_lists", :force => true do |t|
+    t.string  "email"
+    t.integer "year"
   end
 
   create_table "songs", :force => true do |t|

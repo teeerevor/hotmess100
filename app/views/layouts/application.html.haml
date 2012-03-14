@@ -6,15 +6,17 @@
     = stylesheet_link_tag '/assets/application'
 
   %body
-    %section#bg
+    #header
+      %img{src:'/assets/hotmess100.gif'}
+      %h1.hidden
+        Hotmess100
+      %span.hidden
+        (Hottest100 messed with, for the better)
+
+    #bg
       - @songs.shuffle.each_with_index do |song, i|
         - if song.album_img_url && i < 50
           %img{src:song.album_img_url}
-
-    %h1
-      Hotmess100
-    %span
-      (Hottest100 messed with, for the better)
 
     %section#short_list
       %a{name:'short_list'}
@@ -37,6 +39,7 @@
 
     = yield
 
-    = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'
+    -#= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'
+    = javascript_include_tag '/assets/jquery-1.7.1.min'
     = javascript_include_tag '/assets/application'
     = yield_content :js

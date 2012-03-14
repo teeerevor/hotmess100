@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "ArtistsController" do
+describe "ShortListsController" do
   before do
     get "/"
   end

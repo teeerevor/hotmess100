@@ -1,8 +1,7 @@
 require 'spec_helper'
 
-describe "Artist Model" do
-  let(:artist) { Artist.new }
+describe Artist do
   it 'can be created' do
-    artist.should_not be_nil
+    subject.should_not be_nil
   end
 end

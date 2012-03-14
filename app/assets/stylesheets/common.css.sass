@@ -1,7 +1,8 @@
+@import "mixins.css.sass"
+
 body
   font-family: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif
   min-width: 480px
-
 
 h1
   font-size: 32px
@@ -16,10 +17,32 @@ h3
 section
   width: 45%
 
+
+#header
+  background-color: #fff
+  @include clearfix
+  border-bottom: solid 1px #ccc
+
+  img
+    -webkit-transition: all 300ms linear
+    float: left
+    margin: 5px 40px
+    width: 70px
+
+  &.open
+    img
+      width: 130px
+
+  img.big, img:hover
+    width: 300px
+
+  h1
+    font-size: 2em
+  span
+    font-size: 0.8em
+
 #bg
   position: fixed
-  top: 0
-  left: 0
   width: 100%
   img
     width: 20%
@@ -30,10 +53,12 @@ section
 #short_list
   float: left
   margin-left: 20px
+  margin-top: 70px
 
 #song_list
   float: left
   margin-right: 20px
+  margin-top: 70px
 
 nav.list_index
   position: fixed
@@ -44,3 +69,6 @@ nav.list_index
     float: none
     width: 100%
 
+.hidden
+  position: absolute
+  left: -999em
