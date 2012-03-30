@@ -6,17 +6,17 @@
     = stylesheet_link_tag '/assets/application'
 
   %body
+    #bg
+      - @songs.shuffle.each_with_index do |song, i|
+        - if song.album_img_url && i < 50
+          %img{src:song.album_img_url}
+
     #header
       %img{src:'/assets/hotmess100.gif'}
       %h1.hidden
         Hotmess100
       %span.hidden
         (Hottest100 messed with, for the better)
-
-    #bg
-      - @songs.shuffle.each_with_index do |song, i|
-        - if song.album_img_url && i < 50
-          %img{src:song.album_img_url}
 
     %section#short_list
       %a{name:'short_list'}
