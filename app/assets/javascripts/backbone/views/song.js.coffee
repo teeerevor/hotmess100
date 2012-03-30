@@ -38,6 +38,6 @@ class window.Hotmess.Views.SongView extends Backbone.View
     $(@el).toggleClass('expanded')
     if $(@el).hasClass('expanded')
       $(@el).find('.youtube_clip').html(@youtube_template(@model.toJSON()))
-      $('.youtube_clip').fitVids()
+      @.$('.youtube_clip').fitVids()
     else
-      $(@el).find('.youtube_clip').empty()
+      @.$('.youtube_clip').empty()
