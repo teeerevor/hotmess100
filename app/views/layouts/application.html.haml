@@ -6,7 +6,7 @@
     = stylesheet_link_tag '/assets/application'
 
   %body
-    #bg
+    -##bg
       - @songs.shuffle.each_with_index do |song, i|
         - if song.album_img_url && i < 50
           %img{src:song.album_img_url}
@@ -31,7 +31,9 @@
       %ol
         %li
           %a{href:"#short_list"}
-            Short List
+            Short
+            %br
+            List
         - ('a'..'z').each do |letter|
           %li
             %a{href:"##{letter.upcase}"}

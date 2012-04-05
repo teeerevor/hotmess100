@@ -6,7 +6,7 @@ class window.Hotmess.Views.SongView extends Backbone.View
     'click .short_list_song'   : 'add_to_short_list'
     'click .short_list_to_pos' : 'add_to_short_list_at'
     'click .remove'            : 'remove_from_short_list'
-    'click .song_details'      : 'expand_song'
+    'click .song_details'      : 'toggle_song'
 
   initialize: ->
     @model.bind 'reset', @render
@@ -18,6 +18,10 @@ class window.Hotmess.Views.SongView extends Backbone.View
   template: (model)->
     Handlebars.registerHelper 'first_letter', (str)->
       str.charAt(0)
+    Handlebars.registerHelper 'song_name_trim', (str)->
+      if str.length > 37
+        return str.substring(0,34) + '...'
+      str
     tp = Handlebars.compile($('#song-template').html())
     tp(model)
 
@@ -34,10 +38,11 @@ class window.Hotmess.Views.SongView extends Backbone.View
   remove_from_short_list: ->
     window.shortList.remove(@model)
 
-  expand_song: ->
+  toggle_song: ->
     $(@el).toggleClass('expanded')
+    yt_holder = @.$('.youtube_clip')
     if $(@el).hasClass('expanded')
-      $(@el).find('.youtube_clip').html(@youtube_template(@model.toJSON()))
-      @.$('.youtube_clip').fitVids()
+      yt_holder.html(@youtube_template(@model.toJSON()))
+      yt_holder.fitVids()
     else
-      @.$('.youtube_clip').empty()
+      yt_holder.empty()
