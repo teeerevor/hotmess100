@@ -4,9 +4,10 @@
     %title
       Hotmess 100
     = stylesheet_link_tag '/assets/application'
+    = stylesheet_link_tag '/assets/ui-progress-bar'
 
   %body
-    -##bg
+    #bg
       - @songs.shuffle.each_with_index do |song, i|
         - if song.album_img_url && i < 50
           %img{src:song.album_img_url}
@@ -18,26 +19,35 @@
       %span.hidden
         (Hottest100 messed with, for the better)
 
-    %section#short_list
-      %a{name:'short_list'}
-      %h2
-        Short List
+    .ui-progress-bar.ui-container#progress_bar
+      .ui-progress{style:"width: 7%;"}
+        %span.ui-label
+          Loading Resources
+          %b.value
+            7%
 
-    %section#song_list
-      %h2
-        All Songs
+    #app.hidden
+      %section#short_list
+        %a{name:'short_list'}
+        %h2
+          Short List
 
-    %nav.list_index
-      %ol
-        %li
-          %a{href:"#short_list"}
-            Short
-            %br
-            List
-        - ('a'..'z').each do |letter|
+      %section#song_list
+        %h2
+          All Songs
+
+      %nav.list_index
+        %ol
           %li
-            %a{href:"##{letter.upcase}"}
-              =letter.upcase
+            %a{href:"#short_list"}
+              Short
+              %br
+              List
+          - ('a'..'z').each do |letter|
+            %li
+              %a{href:"##{letter.upcase}"}
+                =letter.upcase
+
 
     = yield
 
@@ -45,3 +55,5 @@
     = javascript_include_tag '/assets/jquery-1.7.1.min'
     = javascript_include_tag '/assets/application'
     = yield_content :js
+    :javascript
+      window.songCount = #{Song.all.size}

@@ -1,21 +1,3 @@
-- content_for :js do
-  :javascript
-    $(function(){
-      window.songsList = new Hotmess.Collections.Songs(#{@song_list_json});
-      window.songListView = new Hotmess.Views.SongsListView({collection: songsList});
-      window.shortList = new Hotmess.Collections.ShortList();
-      window.shortListView = new Hotmess.Views.ShortListView({collection: shortList});
-      window.saveLoadView = new Hotmess.Views.SaveLoadView({});
-
-      $('#song_list').append(songListView.render().el);
-      $('#short_list').append(shortListView.render().el);
-      $('#header').append(saveLoadView.render().el);
-
-      $('#header img').on('click', function(){
-        $(this).toggleClass('big');
-      })
-    });
-
 = partial 'templates/song'
 = partial 'templates/youtube_iframe'
 = partial 'templates/save_load'
