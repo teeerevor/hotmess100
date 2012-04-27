@@ -3,6 +3,7 @@ class Hotmess100 < Padrino::Application
   register Padrino::Mailer
   register Padrino::Helpers
 
+  enable :reload
   enable :sessions
 
   # Sprockets support
