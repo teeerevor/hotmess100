@@ -4,35 +4,6 @@ require 'nokogiri'
 require 'open-uri'
 require 'googleajax'
 
-namespace :song_import do
-  desc 'imports hottest 100 songs'
-  task :import => :environment do
-    csv_file = file.expand_path(file.join('db', 'fixtures', '2011_artists.csv'))
-    year = 2011
-
-    unless file.exists? csv_file
-      puts "file does not exist"
-      puts "looking for #{csv_file}"
-      return
-    end
-
-    puts "importing #{csv_file}"
-    songs = 0
-    csv.foreach(csv_file, {headers: true, col_sep: "|"}) do |row|
-      artist_name = row['artist']
-      song_name = row['song']
-      puts "#{artist_name}-#{song_name}"
-
-      artist = artist.find_by_name(artist_name)
-      artist ||= artist.create(name: artist_name)
-      song = artist.songs.where(name:song_name, year: year).first
-      artist.songs.create(name:song_name, year: year) unless song
-      songs += 1
-    end
-    puts "done! - songs imported #{songs}"
-  end
-end
-
 namespace :lastfm_import do
   desc 'imports hottest 100 artist data from lastfm'
   task :run => :environment do
