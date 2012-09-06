@@ -8,7 +8,7 @@ Hotmess100.controllers :short_lists do
 
   post :index, :with => :email do
     unless params[:songs].blank?
-      songs_list = params[:songs].values
+      songs_list = params[:songs]
       unless @short_list = ShortList.find_by_email_and_year(params[:email], Time.now.year)
         @short_list = ShortList.create(email: params[:email], year: Time.now.year)
       end

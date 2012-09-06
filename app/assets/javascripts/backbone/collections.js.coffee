@@ -1,4 +1,5 @@
 class window.Hotmess.Collections.Songs extends Backbone.Collection
+  url: '/songs/'
   model: Hotmess.Models.Song
 
 class window.Hotmess.Collections.ShortList extends Hotmess.Collections.Songs
