@@ -7,24 +7,24 @@
   background-color: #fff
   padding: 5px 10px 5px 10px
   margin-bottom: 10px
+  width: 330px
+  text-align: center
 
-  .buttons
-    display: none
-  #email
-    display: none
-    font-size: 1.3em
-
-#header.open
-  #save_load
-    width: 330px
-    span
+  .email_display
+    cursor: pointer
+    .current_email
+      margin-bottom: 6px
       display: none
+
+  form
+    display: none
 
     #email
       display: block
       width: 100%
       padding: 2px 5px
       text-align: center
+      font-size: 1.3em
 
     .buttons
       width: 283px
@@ -34,4 +34,12 @@
       button
         display: inline-block
         margin: 0 -1px
+
+#header.open
+  #save_load
+    .email_display
+      display: none
+    form
+      display: block
+
 

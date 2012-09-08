@@ -8,9 +8,9 @@
 
   %body
     #bg
-      - @songs.shuffle.each_with_index do |song, i|
-        - if song.album_img_url && i < 50
-          %img{src:song.album_img_url}
+      -#- @songs.shuffle.each_with_index do |song, i|
+        -#- if song.album_img_url && i < 50
+          -#%img{src:song.album_img_url}
 
     #header
       %img{src:'/assets/hotmess100.gif'}

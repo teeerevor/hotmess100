@@ -2,7 +2,7 @@ class SaveLoadView extends Backbone.View
   id: 'save_load'
 
   events:
-    'click span'  : 'open'
+    'click .email_display'  : 'open'
     'click .load' : 'load'
     'click .save' : 'save'
     'click .send' : 'send'
@@ -24,16 +24,26 @@ class SaveLoadView extends Backbone.View
   email: ->
     @.$('#email').val()
 
-  load: ->
+  load: (e) ->
+    e.preventDefault()
+    @setEmailDisplay()
     window.shortList.loadList @email()
     @close()
 
-  save: ->
+  save: (e) ->
+    e.preventDefault()
+    @setEmailDisplay()
     window.shortList.saveList @email()
     @close()
 
-  send: ->
+  send: (e)->
+    e.preventDefault()
+    @setEmailDisplay()
     @close()
+
+  setEmailDisplay: ->
+    @.$('.current_email').text(@email())
+    @.$('.current_email').show()
 
 
 window.Hotmess.Views.SaveLoadView = SaveLoadView
