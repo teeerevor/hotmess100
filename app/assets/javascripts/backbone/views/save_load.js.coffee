@@ -34,11 +34,12 @@ class SaveLoadView extends Backbone.View
     $('#email').off('keyup')
     $('#header').removeClass('open')
 
-  email: ->
-    @emailInput().val()
+  form: ->
+    @.$('form')
 
-  emailInput: ->
-    @.$('#email')
+  email: ->
+    @.$('#email').val()
+
 
   load: (e) ->
     e.preventDefault()
@@ -75,17 +76,17 @@ class SaveLoadView extends Backbone.View
       else
         @showInvalid()
     else
-      @emailInput().removeClass('valid invalid')
+      @form().removeClass('valid invalid')
 
   showValid: ->
-    unless @emailInput().is('.valid')
-      @emailInput().removeClass('invalid')
-      @emailInput().addClass('valid')
+    unless @form().is('.valid')
+      @form().removeClass('invalid')
+      @form().addClass('valid')
 
   showInvalid: ->
-    unless @emailInput().is('.invalid')
-      @emailInput().removeClass('valid')
-      @emailInput().addClass('invalid')
+    unless @form().is('.invalid')
+      @form().removeClass('valid')
+      @form().addClass('invalid')
 
   checkEmail: (callback) ->
     if @validateEmail @email()

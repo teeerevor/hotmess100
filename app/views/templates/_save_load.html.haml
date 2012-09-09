@@ -5,6 +5,15 @@
       load | save | send
   %form
     %input#email{type:'email', placeholder:'you@youremail.com'}
+
+    .side_tips
+      %p.good
+        Good stuff!
+      %p.invalid.error
+        Hmmm, that dosen't look right
+      %p.empty.error
+        Please enter your email.
+
     .buttons
       %button.load.button.black
         Load

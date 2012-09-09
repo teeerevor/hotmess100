@@ -18,22 +18,26 @@
 
   form
     display: none
-
     #email
       display: block
       width: 100%
       padding: 2px 5px
       text-align: center
       font-size: 1.3em
-
     .buttons
       width: 283px
       display: block
       margin: 4px auto 0
-
       button
         display: inline-block
         margin: 0 -1px
+
+    .side_tips
+      display: none
+      .error
+        background-image: url(/assets/red_cross.png)
+      .good
+        background-image: url(/assets/tick.png)
 
 #header.open
   #save_load
@@ -41,3 +45,10 @@
       display: none
     form
       display: block
+
+form
+  #email:after
+    content: 
+
+form.valid
+  #email:after
