@@ -23,11 +23,12 @@ class SaveLoadView extends Backbone.View
     tp(model)
 
   open: ->
-    sl = @
+    self = @
     $('#header').addClass('open')
     $('#email').on 'keyup', ->
       delay (->
-        sl.showInlineValidation()
+        self.form().removeClass('valid invalid blank')
+        self.showInlineValidation()
       ), 1000
 
   close: ->
@@ -43,27 +44,33 @@ class SaveLoadView extends Backbone.View
 
   load: (e) ->
     e.preventDefault()
-    @ifEmailIsValid( ->
-      @setEmailDisplay()
-      window.shortList.loadList @email()
-      @close())
+    self = @
+    @doIfEmailIsValid( ->
+      self.setEmailDisplay()
+      window.shortList.loadList self.email()
+      self.close()
+    , self)
 
   save: (e) ->
     e.preventDefault()
-    @ifEmailIsValid( ->
-      @setEmailDisplay()
-      window.shortList.saveList @email()
-      @close())
+    self = @
+    @doIfEmailIsValid( ->
+      self.setEmailDisplay()
+      window.shortList.saveList self.email()
+      self.close()
+    , self)
 
   send: (e)->
     e.preventDefault()
-    @ifEmailIsValid( ->
-      @setEmailDisplay()
-      @close())
+    self = @
+    @doIfEmailIsValid( ->
+      self.setEmailDisplay()
+      self.close()
+    , self)
 
   setEmailDisplay: ->
-    @.$('.current_email').text(@email())
-    @.$('.current_email').show()
+    @.$('.current_email').text(@email()).show()
+    @.$('.list_label').hide()
 
   validateEmail: (email) ->
     emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -72,27 +79,17 @@ class SaveLoadView extends Backbone.View
   showInlineValidation: ->
     if @email().length > 0
       if @validateEmail @email()
-        @showValid()
+        @form().addClass('valid')
       else
-        @showInvalid()
+        @form().addClass('invalid')
     else
-      @form().removeClass('valid invalid')
+      @form().addClass('blank')
 
-  showValid: ->
-    unless @form().is('.valid')
-      @form().removeClass('invalid')
-      @form().addClass('valid')
-
-  showInvalid: ->
-    unless @form().is('.invalid')
-      @form().removeClass('valid')
-      @form().addClass('invalid')
-
-  checkEmail: (callback) ->
-    if @validateEmail @email()
+  doIfEmailIsValid: (callback, self) ->
+    if self.validateEmail self.email()
       callback()
     else
-      @showInvalidEmailMsg()
+      self.showInvalidEmailMsg()
 
   showInvalidEmailMsg: ->
     @showErrorMessage('That dosen\'t look right, please check the email address you entered.')

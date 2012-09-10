@@ -7,7 +7,6 @@
   background-color: #fff
   padding: 5px 10px 5px 10px
   margin-bottom: 10px
-  width: 330px
   text-align: center
 
   .email_display
@@ -15,8 +14,11 @@
     .current_email
       margin-bottom: 6px
       display: none
+  .list_label
+    margin-top: 6px
 
   form
+    position: relative
     display: none
     #email
       display: block
@@ -33,11 +35,38 @@
         margin: 0 -1px
 
     .side_tips
-      display: none
+      position: absolute
+      top: 7px
+      left: 292px
+      width: 305px
+      text-align: left
+      p
+        display: none
+        background-repeat: no-repeat
+        padding: 1px 0 4px 30px
       .error
         background-image: url(/assets/red_cross.png)
+        color: #E00000
       .good
         background-image: url(/assets/tick.png)
+        color: green
+
+  form
+    -webkit-transition: all 100ms linear
+    &.valid
+      p.good
+        display: inline
+
+    &.invalid
+      p.invalid
+        display: inline
+
+    &.blank
+      p.blank
+        display: inline
+
+    &.blank, &.invalid
+      left: -170px
 
 #header.open
   #save_load
@@ -45,10 +74,3 @@
       display: none
     form
       display: block
-
-form
-  #email:after
-    content: 
-
-form.valid
-  #email:after
