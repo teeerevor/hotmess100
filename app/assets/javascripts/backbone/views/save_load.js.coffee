@@ -13,6 +13,8 @@ class SaveLoadView extends Backbone.View
     'click .load' : 'load'
     'click .save' : 'save'
     'click .send' : 'send'
+    'hover .close_form_button' : 'hover_close_button'
+    'click .close_form_button' : 'close'
 
   render: ->
     $(@el).html @template({})
@@ -34,6 +36,9 @@ class SaveLoadView extends Backbone.View
   close: ->
     $('#email').off('keyup')
     $('#header').removeClass('open')
+
+  hover_close_button: ->
+    $('.close_form_button').toggleClass('highlight')
 
   form: ->
     @.$('form')

@@ -22,17 +22,49 @@
     display: none
     #email
       display: block
-      width: 100%
+      width: 302px
       padding: 2px 5px
       text-align: center
       font-size: 1.3em
     .buttons
-      width: 283px
       display: block
       margin: 4px auto 0
       button
         display: inline-block
         margin: 0 -1px
+
+      .close_form_button
+        display: inline
+        position: relative
+        top: 7px
+        left: 4px
+        img
+          -webkit-transition: opacity 0.5s linear
+          -moz-opacity: 0.2
+          -khtml-opacity: 0.2
+          opacity: 0.2
+
+        span
+          position: relative
+          bottom: 6px
+          -moz-opacity: 0
+          -khtml-opacity: 0
+          opacity: 0
+          -webkit-transition: opacity 0.5s linear
+
+        &.highlight
+          img
+            -moz-opacity: 0.6
+            -khtml-opacity: 0.6
+            opacity: 0.6
+
+          span
+            -moz-opacity: 1
+            -khtml-opacity: 1
+            opacity: 1
+
+      .close_form_button:hover
+        cursor: pointer
 
     .side_tips
       position: absolute
