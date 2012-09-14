@@ -36,6 +36,9 @@ class SaveLoadView extends Backbone.View
   close: ->
     $('#email').off('keyup')
     $('#header').removeClass('open')
+    @email_input().attr('value', '') unless @validateEmail @email
+    @form().removeClass('invalid blank')
+
 
   hover_close_button: ->
     $('.close_form_button').toggleClass('highlight')
@@ -43,8 +46,11 @@ class SaveLoadView extends Backbone.View
   form: ->
     @.$('form')
 
+  email_input: ->
+    @.$('#email')
+
   email: ->
-    @.$('#email').val()
+    @email_input().val()
 
 
   load: (e) ->
