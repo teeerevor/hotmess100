@@ -7,6 +7,7 @@ class window.Hotmess.Views.SongView extends Backbone.View
     'click .short_list_to_pos' : 'add_to_short_list_at'
     'click .remove'            : 'remove_from_short_list'
     'click .song_details'      : 'toggle_song'
+    'hover .song_details'      : 'toggle_song_highlight'
 
   initialize: ->
     @model.bind 'reset', @render
@@ -46,3 +47,6 @@ class window.Hotmess.Views.SongView extends Backbone.View
       yt_holder.fitVids()
     else
       yt_holder.empty()
+
+  toggle_song_highlight: ->
+    $(@el).toggleClass('highlight')

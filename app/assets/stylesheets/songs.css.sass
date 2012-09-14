@@ -1,12 +1,25 @@
 @import "mixins.css.sass"
 
 .song
+  .song_header:hover
+    .song_details
+      background-color: #ccc
+    .song_details:after
+      box-shadow: -2px 2px 0 #ccc
+
+.highlight
+  .song_extras
+    background-color: #ccc
+
+
+.song
   margin-top: 2px
 
 
   .song_header
     width: 100%
     padding-right: 118px
+    cursor: pointer
     @include clearfix
 
   .song_details, .buttons
@@ -35,34 +48,7 @@
         content: "-"
         margin-right: 5px
 
-  .song_extras
-    display: none
-    padding: 11px 20px
-    background-color: #eee
-    margin-right: 14px
-    margin-bottom: 5px
-    border-top-right-radius: 10px
-    border-bottom-right-radius: 10px
-    border-bottom-left-radius: 10px
 
-    a
-      text-decoration: none
-      color: $font-color
-    .desc
-      padding: 5px
-      overflow: hidden
-      font-size: 0.9em
-      font-family: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif
-      line-height: 1.2em
-      &:hover
-        background-color: #ccc
-        cursor: pointer
-        -webkit-border-radius: 5px
-        -moz-border-radius: 5px
-        border-radius: 5px
-
-    .youtube_clip
-      margin: 14px 0px 5px
 
   .buttons
     width: 125px
@@ -73,7 +59,6 @@
       margin: 0 -1px
       font-size: 1.6em
       padding: 0.35em 0.7em 0.40em
-
 
   &.expanded
     .song_details
@@ -96,6 +81,34 @@
     .song_extras
       display: block
 
+.song_extras
+  display: none
+  padding: 11px 20px
+  background-color: #eee
+  margin-right: 14px
+  margin-bottom: 5px
+  border-top-right-radius: 10px
+  border-bottom-right-radius: 10px
+  border-bottom-left-radius: 10px
+
+  a
+    text-decoration: none
+    color: $font-color
+  .desc
+    padding: 5px
+    overflow: hidden
+    font-size: 0.9em
+    font-family: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif
+    line-height: 1.2em
+    &:hover
+      background-color: #ccc
+      cursor: pointer
+      -webkit-border-radius: 5px
+      -moz-border-radius: 5px
+      border-radius: 5px
+
+  .youtube_clip
+    margin: 14px 0px 5px
 
 #song_list
   button.remove, button.move_to_pos
