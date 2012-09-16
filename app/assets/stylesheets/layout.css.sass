@@ -41,22 +41,22 @@
 
 #song_list, #short_list
   width: 44.25%
-
-#short_list
   float: left
   margin-left: 1%
-  margin-top: 70px
-
-#song_list
-  float: left
-  margin-left: 1%
-  margin-top: 70px
+  margin-right: 1%
+  margin-top: 40px
 
 nav.list_index
   position: fixed
   right: 10px
 
-@media only screen and (max-width: 800px), only screen and (max-device-width: 480px)
+@media only screen and (max-width: 800px), only screen and (-webkit-min-device-pixel-ratio: 2)
   section#song_list, section#short_list
     float: none
-    width: 100%
+    width: auto
+    margin-right: 2%
+    margin-left: 2%
+    margin-top: 30px
+
+  nav.list_index
+    display:none
