@@ -8,6 +8,7 @@
 //= require backbone-min
 //= require handlebars-1.0.0.beta6
 //= require jquery.fitvids
+//= require waypoints
 //= require backbone
 //= require backbone/models
 //= require backbone/collections
