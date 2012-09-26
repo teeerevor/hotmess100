@@ -21,6 +21,7 @@ window.App = {
               $('#app').removeClass('hidden')
               $('.list_index').removeClass('hidden')
               $('#progress_bar').remove()
+              self.setupWaypoints()
         ), 1000
 
   load_backbone: ->
@@ -40,6 +41,12 @@ window.App = {
 
   fadeInNextSection: ->
     @fadeIn(@sections.shift()) if @sections.length > 0
+
+  setupWaypoints: ->
+    $.waypoints.settings.scrollThrottle = 30
+    $("#short_list").waypoint (event, direction) ->
+      $(this).toggleClass "sticky", direction is "down"
+      event.stopPropagation()
 }
 
 $ ->

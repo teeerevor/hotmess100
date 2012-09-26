@@ -7,11 +7,21 @@ class window.Hotmess.Views.SongsListView extends Backbone.View
 
   render: ->
     $(@el).empty()
+    @updateTotal(@collection.length)
     for song in @collection.models
       songView = new Hotmess.Views.SongView({model: song})
       $(@el).append songView.render().el
     @
 
+  updateTotal: (song_count) ->
+    h2 = $(@el).parent().find('h2')
+    text = h2.text().split('-')[0]
+    songs_text = ''
+
+    if song_count > 0
+      text = text + " - #{song_count} song#{ if song_count > 1 then 's' else ''}"
+
+    h2.text(text)
 
 class window.Hotmess.Views.ShortListView extends Hotmess.Views.SongsListView
   className:  'short_list'
