@@ -47,6 +47,7 @@
   margin-top: 40px
 
 #short_list
+  -webkit-transition: top 200ms linear
   width: 100%
 
 nav.list_index
@@ -56,11 +57,11 @@ nav.list_index
 @media only screen and (min-width: 800px)
   #short_list.sticky
     position: fixed
-    top: 5px
+    top: 10px
     width: 44.25%
 
-@media only screen and (max-width: 800px), only screen and (-webkit-min-device-pixel-ratio: 2)
-  section#song_list, section#short_list
+@media only screen and (max-width: 800px), only screen
+  #song_list, .sl_groove
     float: none
     width: auto
     margin-right: 2%
