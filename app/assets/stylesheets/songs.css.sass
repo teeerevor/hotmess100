@@ -11,19 +11,8 @@
   .song_extras
     background-color: #ccc
 
-#short_list, #song_list
-  h2
-    margin-left: 22px
-    margin-bottom: 10px
-
-#short_list
-  overflow: auto
-  overflow-x: hidden
-  height: 100%
-
 .song
   margin-top: 2px
-
 
   .song_header
     width: 100%
@@ -117,6 +106,7 @@
   .youtube_clip
     margin: 14px 0px 5px
 
+
 #song_list
   button.remove, button.move_to_pos
     display: none
@@ -125,54 +115,7 @@
   button.short_list_song, .short_list_to_pos
     display: none
 
-#short_list
-  li
-    background-color: transparent
-  ol
-    counter-reset: li /* Initiate a counter */
-    list-style: none /* Remove default numbering */
-    *list-style: decimal /* Keep using default numbering for IE6/7 */
-    padding: 0
-    text-shadow: 0 1px 0 rgba(255,255,255,.5)
-
-    .song_header
-      padding-right: 129px
-
-  li:nth-child(-n+10)
-    .song_header
-      padding-right: 145px
-
-    .song_tab
-      position: relative
-      display: block
-      width: 100%
-      //padding: 11px 15px 11px 30px
-      margin-left: 17px
-      margin-top: 0
-      transition: all .3s ease-out
-
-
-    .song_tab:before
-      content: counter(li)
-      counter-increment: li
-      position: absolute
-      left: -1.3em
-      top: 50%
-      margin-top: -1.3em
-      background: #EE736D /*#87ceeb*/
-      height: 2em
-      width: 2em
-      line-height: 2em
-      border: .3em solid #fff
-      text-align: center
-      font-weight: bold
-      border-radius: 2em
-      transition: all .3s ease-out
-
-    .song_details
-      margin-left: 5px
-
-    .buttons
-      width: 123px
-      margin-right: -150px
-
+#short_list, #song_list
+  h2
+    margin-left: 22px
+    margin-bottom: 10px

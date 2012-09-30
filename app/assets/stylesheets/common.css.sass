@@ -2,18 +2,30 @@
 
 body
   font-family: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif
-  min-width: 480px
+  font-size: 16px
 
 h1
-  font-size: 32px
+  font-size: 2em
 
 h2
-  font-size: 20px
+  font-size: 1.25em
 
 h3
-  font-size: 16px
   color: #333
 
 .hidden
   position: absolute
   left: -999em
+
+@media only screen and (max-width: 600px)
+  body
+    font-size: 13px
+
+// iPhones
+@media only screen and (device-width: 480px)
+  body
+    font-size: 11px
+
+@media only screen and (device-width: 960px) and (orientation: landscape) and not (-webkit-min-device-pixel-ratio: 2)
+  body
+    font-size: 11px
