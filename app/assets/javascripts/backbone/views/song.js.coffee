@@ -7,7 +7,7 @@ class window.Hotmess.Views.SongView extends Backbone.View
     'click .short_list_to_pos' : 'add_to_short_list_at'
     'click .remove'            : 'remove_from_short_list'
     'click .song_details'      : 'toggle_song'
-    'hover .song_details'      : 'toggle_song_highlight'
+    'hover .song_header'          : 'toggle_song_highlight'
 
   initialize: ->
     @model.bind 'reset', @render
