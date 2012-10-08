@@ -53,8 +53,10 @@
 
     = yield
 
-    -#= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'
+    -#= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min'
+    -#= javascript_include_tag "//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject"
     = javascript_include_tag '/assets/jquery-1.7.1.min'
+    = javascript_include_tag '/assets/swfobject'
     = javascript_include_tag '/assets/application'
     = yield_content :js
     :javascript
