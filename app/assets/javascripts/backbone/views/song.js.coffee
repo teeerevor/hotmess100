@@ -41,20 +41,26 @@ class window.Hotmess.Views.SongView extends Backbone.View
 
   toggle_song: ->
     $(@el).toggleClass('expanded')
-    yt_holder = @.$('.youtube_clip')
+    yt_holder = @.$('.youtube_vid')
     if $(@el).hasClass('expanded')
-      #yt_holder.html(@youtube_template(@model.toJSON()))
-      @fire_up_song(yt_holder)
+      @load_youtube_vid(yt_holder, @model.attributes.youtube_url)
       yt_holder.fitVids()
     else
       yt_holder.empty()
 
-  fire_up_song: (cont) ->
-    cont.html("<div id='myid'></div>")
+  load_youtube_vid: (yt_container, yt_vid_id) ->
+    yt_container.append("<div id='#{yt_vid_id}'></div>")
     params = { allowScriptAccess: "always" }
-    atts = { id: "myid" }
-    swfobject.embedSWF("http://www.youtube.com/v/-9Iv4v52ras?enablejsapi=1&playerapiid=ytplayer&version=3",
-                       "myid", "610", "400", "8", null, null, params, atts)
+    atts = { id: yt_vid_id }
+    url = "http://www.youtube.com/v/#{yt_vid_id}?enablejsapi=1&playerapiid=#{yt_vid_id}&version=3"
+    swfobject.embedSWF(url, yt_vid_id, "610", "400", "8", null, null, params, atts)
+    openSongs[yt_vid_id] = @
+
+
+
+  yt_player_stat_change: (state) ->
+    console.log 'yt player state change'
+    console.log 'event'
 
   toggle_song_highlight: ->
     $(@el).toggleClass('highlight')
