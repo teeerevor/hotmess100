@@ -30,9 +30,11 @@ window.App = {
     window.shortList = new Hotmess.Collections.ShortList()
     window.shortListView = new Hotmess.Views.ShortListView({collection: shortList})
     window.saveLoadView = new Hotmess.Views.SaveLoadView({})
+    window.hottestPlayer = new Hotmess.Views.PlayerView({})
 
     $('#song_list').append(songListView.render().el)
     $('#short_list').append(shortListView.render().el)
+    $('#header').append(hottestPlayer.render().el)
     $('#header').append(saveLoadView.render().el)
 
 

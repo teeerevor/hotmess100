@@ -61,17 +61,29 @@
     = yield_content :js
     :javascript
       window.songCount = #{Song.all.size}
-      window.ytPlayers = {}
-      window.openSongs = {}
+
       // Called when the embedded player is available to be scripted
+      //function onYouTubePlayerReady(playerId) {
+        //ytplayer = document.getElementById(playerId);
+        //window.onytplayerStateChange = function(newState) {
+          //hottestPlayer.yt_state_change(playerId, ytplayer, newState);
+          //console.log("Player's new state: " + newState);
+           ////if newState === 0
+             ////player.getNext('')
+        //}
+        //ytplayer.addEventListener("onStateChange", "onytplayerStateChange");
+      //}
       function onYouTubePlayerReady(playerId) {
         ytplayer = document.getElementById(playerId);
-        ytPlayers[playerId] = ytplayer;
-        ytplayer.addEventListener("onStateChange", "onytplayerStateChange");
+        var functionName = playerId+'_statechange'
+        window[functionName] = function(newState) {
+          hottestPlayer.yt_state_change(playerId, ytplayer, newState);
+        }
+
+        ytplayer.addEventListener("onStateChange", functionName);
       }
 
-      function onytplayerStateChange(newState) {
-         console.log("Player's new state: " + newState);
-         //if newState === 0
-           //player.getNext('')
+      function onYouTubeError(error) {
+        window.console && console.log && console.log(error);
       }
+

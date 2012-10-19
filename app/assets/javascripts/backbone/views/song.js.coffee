@@ -7,13 +7,19 @@ class window.Hotmess.Views.SongView extends Backbone.View
     'click .short_list_to_pos' : 'add_to_short_list_at'
     'click .remove'            : 'remove_from_short_list'
     'click .song_details'      : 'toggle_song'
-    'hover .song_header'          : 'toggle_song_highlight'
+    'hover .song_header'       : 'toggle_song_highlight'
 
   initialize: ->
-    @model.bind 'reset', @render
+    @user_opened = false
+    @song_open = false
+    @model.bind 'open',  @open, @
+    @model.bind 'close', @close, @
+    @model.bind 'reset', @render, @
 
   render: ->
     $(@el).html(@template(@model.toJSON()))
+    if @model.get('open')
+      @toggle_song()
     @
 
   template: (model)->
@@ -40,21 +46,30 @@ class window.Hotmess.Views.SongView extends Backbone.View
     window.shortList.remove(@model)
 
   toggle_song: ->
-    $(@el).toggleClass('expanded')
+    @user_opened = if @user_opened then false else true
+    if @song_open then @close() else @open()
+
+  open: ->
+    $(@el).addClass('expanded')
     yt_holder = @.$('.youtube_vid')
-    if $(@el).hasClass('expanded')
-      @load_youtube_vid(yt_holder, @model.attributes.youtube_url)
-      yt_holder.fitVids()
-    else
-      yt_holder.empty()
+    @load_youtube_vid(yt_holder, @model.get('youtube_url'))
+    yt_holder.fitVids()
+    @song_open = true
+
+  close: ->
+    unless @user_opened
+      $(@el).removeClass('expanded')
+      @.$('.youtube_vid').empty()
+      @song_open = false
+
 
   load_youtube_vid: (yt_container, yt_vid_id) ->
+    hottestPlayer.open_song(yt_vid_id, @)
     yt_container.append("<div id='#{yt_vid_id}'></div>")
     params = { allowScriptAccess: "always" }
     atts = { id: yt_vid_id }
     url = "http://www.youtube.com/v/#{yt_vid_id}?enablejsapi=1&playerapiid=#{yt_vid_id}&version=3"
     swfobject.embedSWF(url, yt_vid_id, "610", "400", "8", null, null, params, atts)
-    openSongs[yt_vid_id] = @
 
 
 
