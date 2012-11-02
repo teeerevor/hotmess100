@@ -4,6 +4,11 @@ PLAYING = 1
 STOPPED = 2
 BUFFERING = 3
 
+DEFAULT = 0
+CONTINUOUS = 1
+SHUFFLE = 2
+REPEAT = 3
+
 class window.Hotmess.Views.PlayerView extends Backbone.View
   tagName: 'div'
   className: 'player'
@@ -19,7 +24,7 @@ class window.Hotmess.Views.PlayerView extends Backbone.View
     @open_songs = {}
     @yt_players = {}
     @current_song_id = ''
-    @player_mode = 'single'
+    @player_mode = DEFAULT
 
   render: ->
     $(@el).html @template({})
@@ -41,17 +46,30 @@ class window.Hotmess.Views.PlayerView extends Backbone.View
     console.log "yt_state_change #{state}"
     @yt_players[player_id] = player
     switch state
-      when READY
-        if @play_on_ready
-          @play()
-          @play_on_ready = false
-      when ENDED then @pick_next_song()
-      when PLAYING
-        @pause() unless player_id == @current_song_id
-        @show_play()
-        @set_current_song(player_id)
+      when READY then @song_ready()
+      when ENDED then @song_ended()
+      when PLAYING then @song_playing()
       when STOPPED then @show_pause()
       when BUFFERING then @show_pause()
+
+  song_ready: ->
+    if @play_on_ready
+      @play()
+      @play_on_ready = false
+
+  song_ended: ->
+    switch @player_mode
+      when CONTINUOUS then @next()
+      when SHUFFLE then @shuffle_next()
+        #stoa
+      #when 'repeat'
+        #stoeau
+        #
+
+  song_playing: ->
+    @pause() unless player_id == @current_song_id
+    @show_play()
+    @set_current_song(player_id)
 
   set_current_song: (id) ->
     console.log "current_song #{id}"
@@ -81,15 +99,6 @@ class window.Hotmess.Views.PlayerView extends Backbone.View
   show_pause: ->
     console.log 'show_pause'
 
-  pick_next_song: ->
-    switch @player_mode
-      when 'continuous'
-        @next()
-      #when 'shuffle'
-        #stoa
-      #when 'repeat'
-        #stoeau
-
   next: ->
     console.log 'next'
     next_song = songsList.get_next_song(@current_song().model)
@@ -99,12 +108,16 @@ class window.Hotmess.Views.PlayerView extends Backbone.View
     @set_current_song(next_song.get('youtube_url'))
     @play_when_ready()
 
+  shuffle_next: ->
+    console.log 'shuffle next'
+
   play_when_ready: ->
     @play_on_ready = true
 
   continuous: ->
     console.log 'continuous'
-    @player_mode = 'continuous'
+    @player_mode = CONTINUOUS
 
   shuffle: ->
-    #stuff
+    console.log 'shuffle'
+    @player_mode = SHUFFLE
