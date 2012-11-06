@@ -1,16 +1,14 @@
 %script#hottest-player-template{type:'text/x-handlebars-template'}
-  %div
-    %button.play
-      play
-    %button.pause
-      pause
+  .current_song
+  .player_buttons
+    %button.previous
+      %i.icon-previous
+    %button.play_pause.is_paused
+      %i.pause.icon-pause
+      %i.play.icon-play
     %button.next
-      next
-    %button.current_song
-      current_song
+      %i.icon-next
     %button.continuous
-      continuous
+      %i.icon-continuous
     %button.shuffle
-      shuffle
-    %button.repeat_song
-      repeat_song
+      %i.icon-shuffle
