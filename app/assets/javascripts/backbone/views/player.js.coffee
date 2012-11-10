@@ -14,9 +14,9 @@ class window.Hotmess.Views.PlayerView extends Backbone.View
   className: 'player'
 
   events:
-    'click .play'       : 'play'
-    'click .pause'      : 'pause'
+    'click .play_pause' : 'play_pause'
     'click .next'       : 'next'
+    'click .previous'   : 'previous'
     'click .shuffle'    : 'shuffle'
     'click .continuous' : 'continuous'
 
@@ -49,8 +49,8 @@ class window.Hotmess.Views.PlayerView extends Backbone.View
       when READY then @song_ready()
       when ENDED then @song_ended()
       when PLAYING then @song_playing()
-      when STOPPED then @show_pause()
-      when BUFFERING then @show_pause()
+      when STOPPED then @show_paused()
+      when BUFFERING then @show_paused()
 
   song_ready: ->
     if @play_on_ready
@@ -68,7 +68,7 @@ class window.Hotmess.Views.PlayerView extends Backbone.View
 
   song_playing: ->
     @pause() unless player_id == @current_song_id
-    @show_play()
+    @show_playing()
     @set_current_song(player_id)
 
   set_current_song: (id) ->
@@ -83,25 +83,46 @@ class window.Hotmess.Views.PlayerView extends Backbone.View
     console.log 'current_player'
     @yt_players[@current_song_id]
 
+  play_pause: ->
+    if $('.play_pause').hasClass('is_paused')
+      @play()
+    else
+      @pause()
+
   play: ->
     console.log 'play'
     if @current_player()
       @current_player().playVideo()
+    @show_playing()
 
-  show_play: ->
-    console.log 'show_play'
+  show_playing: ->
+    console.log 'show play'
+    $('.play_pause').addClass('is_playing')
+    $('.play_pause').removeClass('is_paused')
 
   pause: ->
     console.log 'pause'
     if @current_player()
       @current_player().stopVideo()
+    @show_paused()
 
-  show_pause: ->
-    console.log 'show_pause'
+  show_paused: ->
+    console.log 'show play'
+    $('.play_pause').removeClass('is_playing')
+    $('.play_pause').addClass('is_paused')
 
   next: ->
     console.log 'next'
     next_song = songsList.get_next_song(@current_song().model)
+    @pause()
+    @current_song().close()
+    next_song.trigger 'open'
+    @set_current_song(next_song.get('youtube_url'))
+    @play_when_ready()
+
+  previous: ->
+    console.log 'prev'
+    next_song = songsList.get_previous_song(@current_song().model)
     @pause()
     @current_song().close()
     next_song.trigger 'open'
@@ -116,8 +137,27 @@ class window.Hotmess.Views.PlayerView extends Backbone.View
 
   continuous: ->
     console.log 'continuous'
-    @player_mode = CONTINUOUS
+    $('.continuous').toggleClass('active')
+    $('.shuffle').removeClass('active')
+    switch @player_mode
+      when CONTINUOUS then @player_mode = REPEAT
+      when REPEAT then @player_mode = DEFAULT
+      else @player_mode = CONTINUOUS
+    @show_player_mode()
 
   shuffle: ->
     console.log 'shuffle'
-    @player_mode = SHUFFLE
+    switch @player_mode
+      when SHUFFLE then @player_mode = DEFAULT
+      else @player_mode = SHUFFLE
+    @show_player_mode()
+
+  show_player_mode: ->
+    $('.shuffle').removeClass('active')
+    $('.continuous').removeClass('active').removeClass('repeat')
+    switch @player_mode
+      when SHUFFLE then $('.shuffle').addClass('active')
+      when CONTINUOUS then $('.continuous').addClass('active')
+      when REPEAT then $('.continuous').addClass('repeat')
+
+
