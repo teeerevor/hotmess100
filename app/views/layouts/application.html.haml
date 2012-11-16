@@ -22,6 +22,8 @@
         Hotmess100
       %span.hidden
         (Hottest100 messed with, for the better)
+      -#%a{href:"#short_list"}
+        -#Short List
 
     .ui-progress-bar.ui-container#progress_bar
       .ui-progress{style:"width: 7%;"}
@@ -40,16 +42,10 @@
           All Songs
 
       %nav.list_index
-        %ol
-          %li
-            %a{href:"#short_list"}
-              Short
-              %br
-              List
-          - ('a'..'z').each do |letter|
-            %li
-              %a{href:"##{letter.upcase}"}
-                =letter.upcase
+        - ('a'..'z').each do |letter|
+          %a{href:"##{letter.upcase}"}
+            %div
+              =letter.upcase
 
 
     = yield
