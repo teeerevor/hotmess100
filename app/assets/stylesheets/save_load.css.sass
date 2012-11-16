@@ -2,11 +2,7 @@
 
 #save_load
   display: inline-block
-  float: right
-  margin-right: 10%
   background-color: #fff
-  padding: 5px 10px 5px 10px
-  margin-bottom: 10px
   text-align: center
 
   .email_display
@@ -21,12 +17,15 @@
     position: relative
     display: none
     #email
+      float: left
       display: block
       width: 302px
       padding: 2px 5px
       text-align: center
       font-size: 1.3em
     .buttons
+      clear: both
+      float: left
       display: block
       margin: 4px auto 0
       button
@@ -67,11 +66,9 @@
         cursor: pointer
 
     .side_tips
-      position: absolute
-      top: 7px
-      left: 315px
-      width: 305px
+      float: left
       text-align: left
+      margin: 9px 0 0 10px
       p
         display: none
         background-repeat: no-repeat
@@ -96,9 +93,6 @@
     &.blank
       p.blank
         display: inline
-
-    &.blank, &.invalid
-      left: -170px
 
 #header.open
   #save_load

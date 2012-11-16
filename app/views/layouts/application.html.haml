@@ -11,44 +11,47 @@
     %link{ rel:"icon", type:"image/ico", href: "/assets/favicon.ico"}
 
   %body
-    #bg
-      -#- @songs.shuffle.each_with_index do |song, i|
-        -#- if song.album_img_url && i < 50
-          -#%img{src:song.album_img_url}
-
-    #header
-      %img.logo{src:'/assets/hotmess100.gif'}
-      %h1.hidden
-        Hotmess100
-      %span.hidden
-        (Hottest100 messed with, for the better)
-      -#%a{href:"#short_list"}
-        -#Short List
-
-    .ui-progress-bar.ui-container#progress_bar
-      .ui-progress{style:"width: 7%;"}
-        %span.ui-label
-          %b.value
+    #loading
+      .ui-progress-bar.ui-container#progress_bar
+        .ui-progress{style:"width: 7%;"}
+          %span.ui-label
+            %b.value
 
     #app.hidden
-      .sl_groove
-        %section#short_list
-          %a{name:'short_list'}
+      #bg
+        -#- @songs.shuffle.each_with_index do |song, i|
+          -#- if song.album_img_url && i < 50
+            -#%img{src:song.album_img_url}
+
+      #header
+        %img.logo{src:'/assets/hotmess100.gif'}
+        %h1.hidden
+          Hotmess100
+        %span.hidden
+          (Hottest100 messed with, for the better)
+        -#%a{href:"#short_list"}
+          -#Short List
+
+
+      #app
+        .sl_groove
+          %section#short_list
+            %a{name:'short_list'}
+            %h2
+              Short List
+
+        %section#song_list
           %h2
-            Short List
+            All Songs
 
-      %section#song_list
-        %h2
-          All Songs
-
-      %nav.list_index
-        - ('a'..'z').each do |letter|
-          %a{href:"##{letter.upcase}"}
-            %div
-              =letter.upcase
+        %nav.list_index
+          - ('a'..'z').each do |letter|
+            %a{href:"##{letter.upcase}"}
+              %div
+                =letter.upcase
 
 
-    = yield
+      = yield
 
     -#= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min'
     -#= javascript_include_tag "//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject"
