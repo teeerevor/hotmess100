@@ -24,4 +24,4 @@ window.Scroller = {
 }
 
 $ ->
-  Scroller.watchScroll()
+  #Scroller.watchScroll()
