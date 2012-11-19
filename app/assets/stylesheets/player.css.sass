@@ -1,5 +1,29 @@
+@import 'songs.css.sass'
+
 .player
+  width: 235px
+  margin: 10px auto 0
+
+  .current_song
+    display: none
+
+    img
+      float: left
+      margin-right: 10px
+
+  .song_name
+    +song_name
+
+  .artist_name
+    +artist_name
+
+  .player_buttons
+    width: 190px
+    margin: 5px auto 0
+
   button
+    margin: 0
+    padding: 0
     border: 0
     background: 0
     color: #555
@@ -27,5 +51,39 @@
   .previous, .next, .shuffle, .continuous
     font-size: 1.2em
     cursor: pointer
+    position: relative
+    top: -5px
 
+  .shuffle
+    margin-top: 8px
+    margin-left: 10px
+  .continuous
+    margin-top: 8px
+    margin-left: 25px
 
+#app.active
+  .current_song
+    display: inline-block
+
+//@media only screen and (max-width: 800px)
+  //.song_name
+    //display: block
+    //float:left
+
+  //.artist_name
+    //display: block
+    //&:before
+      
+    //margin-left: 0
+    //float:left
+
+//@media only screen and (min-width: 800px)
+  //.player
+    //width: 400px
+
+  //.player_buttons
+    //left: 20px
+    //top: 20px
+
+  //.song_name, .artist_name
+    //margin-top: 10px

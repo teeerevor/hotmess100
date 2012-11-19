@@ -11,6 +11,18 @@
   .song_extras
     background-color: #ccc
 
+@mixin song_name
+  display: inline-block
+  font-weight: bold
+  margin-bottom: 3px
+
+@mixin artist_name
+  display: inline-block
+  color: #666
+  &:before
+    content: "-"
+    margin-right: 5px
+
 .song
   margin-top: 2px
 
@@ -35,16 +47,10 @@
   .song_details
     padding: 11px 10px 11px 20px
     .song_name
-      display: inline-block
-      font-weight: bold
-      margin-bottom: 3px
+      +song_name
 
     .artist_name
-      display: inline-block
-      color: #666
-      &:before
-        content: "-"
-        margin-right: 5px
+      +artist_name
 
   .buttons
     width: 123px

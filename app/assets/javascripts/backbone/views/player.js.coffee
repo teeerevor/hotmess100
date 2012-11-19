@@ -48,7 +48,7 @@ class window.Hotmess.Views.PlayerView extends Backbone.View
     switch state
       when READY then @song_ready()
       when ENDED then @song_ended()
-      when PLAYING then @song_playing()
+      when PLAYING then @song_playing(player_id)
       when STOPPED then @show_paused()
       when BUFFERING then @show_paused()
 
@@ -66,10 +66,12 @@ class window.Hotmess.Views.PlayerView extends Backbone.View
         #stoeau
         #
 
-  song_playing: ->
+  song_playing: (player_id) ->
+    console.log 'song_playing'
     @pause() unless player_id == @current_song_id
-    @show_playing()
     @set_current_song(player_id)
+    @update_player_display()
+    @show_playing()
 
   set_current_song: (id) ->
     console.log "current_song #{id}"
@@ -82,6 +84,13 @@ class window.Hotmess.Views.PlayerView extends Backbone.View
   current_player: ->
     console.log 'current_player'
     @yt_players[@current_song_id]
+
+  update_player_display: ->
+    song = @current_song()
+    window.tsong =  song
+    @.$('.song_name').html(song.model.get('name'))
+    @.$('.artist_name').html(song.model.get('artist').name)
+    $('#app').addClass('active')
 
   play_pause: ->
     if $('.play_pause').hasClass('is_paused')
@@ -107,7 +116,7 @@ class window.Hotmess.Views.PlayerView extends Backbone.View
     @show_paused()
 
   show_paused: ->
-    console.log 'show play'
+    console.log 'show paused'
     $('.play_pause').removeClass('is_playing')
     $('.play_pause').addClass('is_paused')
 
