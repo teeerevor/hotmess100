@@ -9,6 +9,7 @@ gem 'rake'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 
 # Component requirements
+gem 'resque', "~> 1.22.0"
 gem 'haml'
 gem 'sass'
 gem 'activerecord', :require => "active_record"
