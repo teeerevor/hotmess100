@@ -19,10 +19,10 @@ gem 'rspec', :group => "test"
 gem 'rack-test', :require => "rack/test", :group => "test"
 
 # Padrino Stable Gem
-gem 'padrino', '0.10.5'
+gem 'padrino', '0.10.7'
 
 # Use Sprockets
-gem 'padrino-sprockets', :require => 'padrino/sprockets'
+gem 'padrino-sprockets', :require => 'padrino/sprockets', :git => 'git://github.com/nightsailer/padrino-sprockets.git'
 
 # Use Coffeescript
 gem 'coffee-script'
