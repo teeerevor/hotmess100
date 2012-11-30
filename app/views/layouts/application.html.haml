@@ -60,6 +60,8 @@
     = yield_content :js
     :javascript
       window.songCount = #{Song.all.size}
+      window.email = '#{@email}'
+      window.year = '#{@year}'
 
       function onYouTubePlayerReady(playerId) {
         ytplayer = document.getElementById(playerId);
