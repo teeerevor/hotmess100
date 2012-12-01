@@ -25,25 +25,36 @@
   #main
     margin-top: 100px
 
+@media only screen and (max-width: 600px)
+  //#app
+    //background-color: red
+
+  .list_index
+    display: none
+
 @media only screen and (min-width: 600px)
   #app
+    //background-color: green
     margin-left: 10px
-    margin-right: 30px
+    margin-right: 46px
+
+  #short_list
+    margin-left: 5px
+
 
 
 @media only screen and (min-width: 800px)
-  #song_list, #short_list
-    width: 47%
-    //margin-left: 1%
-    //margin-right: 1%
-
-  #song_list
-    margin-left: 53%
+  //#app
+    //background-color: blue
 
   #short_list
+    width: 47%
     position: fixed
     overflow: auto
     overflow-x: hidden
+
+  #song_list
+    margin-left: 52%
 
   #save_load
     right: 3%

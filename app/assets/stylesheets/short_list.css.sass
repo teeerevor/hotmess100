@@ -1,4 +1,3 @@
-
 #short_list
   li
     background-color: transparent
@@ -9,25 +8,12 @@
     padding: 0
     text-shadow: 0 1px 0 rgba(255,255,255,.5)
 
-    .song_header
-      padding-right: 129px
-
   li:nth-child(-n+10)
-    .song_header
-      padding-right: 145px
-
     .song_tab
       position: relative
       display: block
-      width: 100%
-      //padding: 11px 15px 11px 30px
-      margin-left: 13px
+      margin-left: 17px
       margin-top: 0
-      transition: all .3s ease-out
-
-    @media only screen and (min-width: 800px)
-      .song_tab
-        margin-left: 17px
 
     .song_tab:before
       content: counter(li)
@@ -51,7 +37,3 @@
 
     .song_extras
       margin-left: 17px
-
-    .buttons
-      width: 123px
-      margin-right: -150px

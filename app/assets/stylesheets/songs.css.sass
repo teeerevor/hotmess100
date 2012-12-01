@@ -1,4 +1,4 @@
-@import "mixins.css.sass"
+@import 'mixins.css.sass'
 
 .song
   .song_header:hover
@@ -28,21 +28,16 @@
 
   .song_header
     width: 100%
-    padding-right: 125px
     cursor: pointer
-    @include clearfix
+    +display-box
+    +box-orient(horizontal)
 
-  .song_tab, .buttons
-    position: relative
-    float: left
 
   .song_tab
-    width: 100%
+    +box-flex(1)
     min-height: 40px
     background-color: #eee
-    -webkit-border-radius: 10px
-    -moz-border-radius: 10px
-    border-radius: 10px
+    +border-radius( 10px)
 
   .song_details
     padding: 11px 10px 11px 20px
@@ -53,10 +48,8 @@
       +artist_name
 
   .buttons
-    width: 123px
-    margin-right: -135px
+    display: inline-block
     margin-left: 6px
-    //border: solid #00f 1px
 
     button
       margin: 0 -1px
