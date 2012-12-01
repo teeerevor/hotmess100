@@ -1,4 +1,3 @@
-
 require 'uri'
 require 'nokogiri'
 require 'open-uri'
@@ -8,7 +7,7 @@ class Lastfm < Thor
   def grab_artist_dets
     require File.expand_path('config/boot.rb')
 
-    lastfm_api_key = '199ccc69045a31eb478889eb98f66cc5'
+    lastfm_api_key = ENV['lastfm_api_key']
     #Song.all(:include => :artist, :order => 'songs.name').each do |song|
     Artist.all.each do |artist|
       #artist = song.artist
