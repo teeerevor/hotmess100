@@ -17,17 +17,19 @@ Hotmess100.controllers '/' do
   end
 
   get :short_lists, :with => :email do
-    @short_list = ShortList.find_by_email_and_year(params[:email], Time.now.year)
+    year = params[:year] || 2011
+    @short_list = ShortList.find_by_email_and_year(params[:email], year)
     @short_list_songs = @short_list.short_listed_songs.all( :include => {:song => :artist}, :order => 'short_listed_songs.position')
     @songs = @short_list_songs.map{|sls| sls.song}
     @songs.to_json(:include => :artist, :methods => [:short_desc, :content_link])
   end
 
   post :short_lists, :with => :email do
+    year = params[:year] || 2011
     unless params[:songs].blank?
       songs_list = params[:songs]
-      unless @short_list = ShortList.find_by_email_and_year(params[:email], Time.now.year)
-        @short_list = ShortList.create(email: params[:email], year: Time.now.year)
+      unless @short_list = ShortList.find_by_email_and_year(params[:email], year)
+        @short_list = ShortList.create(email: params[:email], year: year)
       end
       @short_list.short_list_songs(songs_list)
     end
