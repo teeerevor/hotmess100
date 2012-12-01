@@ -3,22 +3,19 @@ source :rubygems
 gem 'rake'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 
-# Component requirements
-gem 'haml'
-gem 'sass'
-gem 'activerecord', :require => "active_record"
-gem 'pg'
-
-
 # Padrino Stable Gem
 gem 'padrino', '0.10.7'
+
+gem 'activerecord', :require => "active_record"
+gem 'pg'
 
 # Use Sprockets
 gem 'padrino-sprockets', :require => 'padrino/sprockets', :git => 'git://github.com/nightsailer/padrino-sprockets.git'
 
-# Use Coffeescript
+# Component requirements
+gem 'haml'
+gem 'sass'
 gem 'coffee-script'
-
 
 gem 'rabl'
 gem 'nokogiri'
