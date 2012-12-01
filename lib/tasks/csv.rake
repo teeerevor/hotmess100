@@ -21,5 +21,7 @@ task :load_csv => :environment do
       songs += 1
     end
   end
+  Song.where(name:nil).delete_all
+  Artist.where(name:nil).delete_all
   puts "done! - songs imported #{songs}"
 end
