@@ -10,6 +10,7 @@
 //= require jquery.fitvids
 //= require waypoints
 //= require backbone
+//= require backbone.localStorage-min
 //= require backbone/models
 //= require backbone/collections
 //= require_folder backbone/views/

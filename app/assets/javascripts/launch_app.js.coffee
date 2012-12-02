@@ -25,9 +25,9 @@ window.App = {
         ), 1000
 
   load_backbone: ->
-    window.songsList = new Hotmess.Collections.Songs()
+    window.songsList = new Hotmess.Collections.Songs({localStorage: new Store("songList2011")})
     window.songListView = new Hotmess.Views.SongsListView({collection: songsList})
-    window.shortList = new Hotmess.Collections.ShortList()
+    window.shortList = new Hotmess.Collections.ShortList({localStorage: new Store("shortList2011")})
     window.shortListView = new Hotmess.Views.ShortListView({collection: shortList})
     window.saveLoadView = new Hotmess.Views.SaveLoadView({})
     window.hottestPlayer = new Hotmess.Views.PlayerView({})

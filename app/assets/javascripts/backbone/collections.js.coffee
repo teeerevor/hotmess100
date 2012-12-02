@@ -1,6 +1,10 @@
 class window.Hotmess.Collections.Songs extends Backbone.Collection
-  url: '/songs/'
-  model: Hotmess.Models.Song
+  model: Hotmess.Models.Song,
+
+  fetchFromServer : ->
+    url: '/songs/2011'
+    @fetch()
+
 
   get_next_song: (song) ->
     song_index = _.indexOf( @.models, song)
@@ -11,7 +15,7 @@ class window.Hotmess.Collections.Songs extends Backbone.Collection
     @.models[song_index - 1]
 
 class window.Hotmess.Collections.ShortList extends Hotmess.Collections.Songs
-  url: '/short_lists/'
+  url: '/short_lists/',
 
   loadList: (email) ->
     @url = "/short_lists/#{email}"
