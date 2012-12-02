@@ -10,19 +10,22 @@ window.App = {
     @progressBar.removeClass("transition").addClass("error").addClass("transition")
     $(".ui-progress .ui-label", @progressBar).hide()
     $(".ui-progress", @progressBar).css "width", "7%"
+
     $(".ui-progress", @progressBar).animateProgress 35, ->
       self.load_backbone()
       $("#progress_bar").removeClass("error").addClass "warning"
+
       $("#progress_bar .ui-progress").animateProgress 60, ->
-        songsList.fetch({dataType: 'json'})
-        setTimeout (->
-          $("#progress_bar").removeClass "warning"
-          $("#progress_bar .ui-progress").animateProgress 100, ->
-              $('#app').removeClass('hidden')
-              $('.list_index').removeClass('hidden')
-              $('#progress_bar').remove()
-              #self.setupWaypoints()
-        ), 1000
+        songsList.fetch({dataType: 'json', success: self.finishAndShow})
+
+  finishAndShow: ->
+    $("#progress_bar").removeClass "warning"
+    $("#progress_bar .ui-progress").animateProgress 100, ->
+        $('#app').removeClass('hidden')
+        $('.list_index').removeClass('hidden')
+        $('#progress_bar').remove()
+        #self.setupWaypoints()
+
 
   load_backbone: ->
     window.songsList = new Hotmess.Collections.Songs()
@@ -36,7 +39,6 @@ window.App = {
     $('#short_list').append(shortListView.render().el)
     $('#header').append(hottestPlayer.render().el)
     $('#header').append(saveLoadView.render().el)
-
 
   fadeIn: (section) ->
     $("section.#{section}").fadeIn 'slow'
