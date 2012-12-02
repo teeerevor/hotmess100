@@ -35,6 +35,10 @@ Hotmess100.controllers '/' do
     end
   end
 
+  get :about do
+    render 'about', layout: 'static.html'
+  end
+
   get :index, :with => :year_or_email do
     if params[:year_or_email] =~ /\d{4}/
       @year = params[:year_or_email]
