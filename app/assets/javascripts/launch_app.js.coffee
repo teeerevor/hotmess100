@@ -23,7 +23,7 @@ window.App = {
     $("#progress_bar .ui-progress").animateProgress 100, ->
         $('#app').removeClass('hidden')
         $('.list_index').removeClass('hidden')
-        $('#progress_bar').remove()
+        $('#loading').hide()
         #self.setupWaypoints()
 
 
