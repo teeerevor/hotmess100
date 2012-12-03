@@ -14,22 +14,29 @@
     #loading
       %img.logo{src:'/assets/hottest100_logo.png'}
 
-      #moto
-        Helping you select your hottest100 votes, since.. well.. as soon as this fricken list loads.
-
-      #quick_start
-        While you're waiting
-
-        Short list songs.
-        Save your short list.
-        Load it up later.
-        Send once you are happy with the list
-
 
       .ui-progress-bar.ui-container#progress_bar
         .ui-progress{style:"width: 7%;"}
           %span.ui-label
             %b.value
+
+      -#%button.launch_btn.button.red.hidden
+        -#Lets do this!
+
+      %ol.waiting_list
+        %li
+          Shortlist your favs
+          %img.watch{src:'/assets/awkward.png'}
+
+        %li
+          Refine your top ten
+          %img.list{src:'/assets/list.gif'}
+
+        %li
+          Vote in the Hottest 100
+
+        %li
+          Party on!
 
     #app.hidden
       #bg

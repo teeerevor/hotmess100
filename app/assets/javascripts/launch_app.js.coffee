@@ -16,16 +16,23 @@ window.App = {
       $("#progress_bar").removeClass("error").addClass "warning"
 
       $("#progress_bar .ui-progress").animateProgress 60, ->
-        songsList.fetch({dataType: 'json', success: self.finishAndShow})
+        songsList.fetch({dataType: 'json', success: self.showApp})
 
-  finishAndShow: ->
+  #may use this later
+  finishAndShowLaunchBtn: ->
     $("#progress_bar").removeClass "warning"
     $("#progress_bar .ui-progress").animateProgress 100, ->
-        $('#app').removeClass('hidden')
-        $('.list_index').removeClass('hidden')
-        $('#loading').hide()
-        #self.setupWaypoints()
+      $('.launch_btn').removeClass('hidden')
+      $('.ui-progress-bar').hide()
 
+
+  showApp: ->
+    $("#progress_bar").removeClass "warning"
+    $("#progress_bar .ui-progress").animateProgress 100, ->
+      $('#app').removeClass('hidden')
+      $('.list_index').removeClass('hidden')
+      $('#loading').hide()
+    #self.setupWaypoints()
 
   load_backbone: ->
     window.songsList = new Hotmess.Collections.Songs()
