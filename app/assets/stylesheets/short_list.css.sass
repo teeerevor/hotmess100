@@ -1,3 +1,5 @@
+@import 'mixins.css.sass'
+
 #short_list
   li
     background-color: transparent
@@ -37,3 +39,21 @@
 
     .song_extras
       margin-left: 17px
+
+  .empty_list_blank_state
+    max-width: 350px
+    margin: 10px
+    padding: 10px 20px 20px
+    color: whitesmoke
+    font-size: 1.2em
+    background-color: #666
+    +border-radius(10px)
+
+    p
+      margin-bottom: 20px
+
+    img
+      display: block
+      margin-top: 20px
+      width: 100%
+      +border-radius(10px)
