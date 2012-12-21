@@ -18,6 +18,12 @@ Bundler.require(:default, PADRINO_ENV)
 # Add your before load hooks here
 #
 Padrino.before_load do
+  if PADRINO_ENV == "development"
+    dev = YAML.load_file("config/dev.yaml")
+    ENV['current_year'] = dev['current_year']
+    puts 'current_year'
+    puts dev['current_year']
+  end
 end
 
 ##

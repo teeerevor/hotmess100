@@ -4,7 +4,7 @@ Hotmess100.controllers '/' do
   end
 
   get :songs, :provides => [:html, :json] do
-    year = params[:year] || 2011
+    year = params[:year] || ENV['current_year']
     find_params = {conditions: {year: year}, include: 'artist', order: 'songs.name'}
     @songs = Song.all(find_params)
 
@@ -17,7 +17,7 @@ Hotmess100.controllers '/' do
   end
 
   get :short_lists, :with => :email do
-    year = params[:year] || 2011
+    year = params[:year] || ENV['current_year']
     @short_list = ShortList.find_by_email_and_year(params[:email], year)
     @short_list_songs = @short_list.short_listed_songs.all( :include => {:song => :artist}, :order => 'short_listed_songs.position')
     @songs = @short_list_songs.map{|sls| sls.song}
@@ -25,7 +25,7 @@ Hotmess100.controllers '/' do
   end
 
   post :short_lists, :with => :email do
-    year = params[:year] || 2011
+    year = params[:year] || ENV['current_year']
     unless params[:songs].blank?
       songs_list = params[:songs]
       unless @short_list = ShortList.find_by_email_and_year(params[:email], year)

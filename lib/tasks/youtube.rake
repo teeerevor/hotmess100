@@ -5,9 +5,12 @@ require 'googleajax'
 
 desc 'youtube loader'
 task :load_youtube => :environment do
-  Song.all.each do |song|
+  year = ENV['current_year']
+
+  Song.where(year: year).each do |song|
     puts "artist = #{song.artist.name}|#{song.name}"
-    url = "http://www.youtube.com/results?search_query=#{song.youtube_search_string}+official"
+    url = "http://www.youtube.com/results?search_query=#{URI::encode(song.youtube_search_string)}"
+    puts URI::encode(song.youtube_search_string)
     begin
       doc = Nokogiri::HTML(open(url))
       url = doc.css('#search-results').first.css('a').first.attr('href')
