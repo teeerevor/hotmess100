@@ -27,7 +27,6 @@ class window.Hotmess.Views.ShortListView extends Hotmess.Views.SongsListView
   className:  'short_list'
 
   render: ->
-    console.log @collection.length
     if @collection.length == 0
       @show_blank_state()
     else

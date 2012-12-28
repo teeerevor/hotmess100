@@ -89,9 +89,8 @@
     = javascript_include_tag '/assets/application'
     = yield_content :js
     :javascript
-      window.songCount = #{Song.all.size}
-      window.email = '#{@email}'
-      window.year = '#{@year}'
+      window.urlEmail = '#{@email}'
+      window.urlYear = '#{@year}'
 
       function onYouTubePlayerReady(playerId) {
         ytplayer = document.getElementById(playerId);

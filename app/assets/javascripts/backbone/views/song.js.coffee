@@ -17,16 +17,17 @@ class window.Hotmess.Views.SongView extends Backbone.View
     @model.bind 'reset', @render, @
 
   render: ->
-    $(@el).html(@template(@model.toJSON()))
-    if @model.get('open')
-      @toggle_song()
+    if @model
+      $(@el).html(@template(@model.toJSON()))
+      if @model.get('open')
+        @toggle_song()
     @
 
   template: (model)->
     Handlebars.registerHelper 'first_letter', (str)->
-      str.charAt(0)
+      if str then str.charAt(0) else ''
     Handlebars.registerHelper 'song_name_trim', (str)->
-      if str.length > 37
+      if str and str.length > 37
         return str.substring(0,34) + '...'
       str
     tp = Handlebars.compile($('#song-template').html())

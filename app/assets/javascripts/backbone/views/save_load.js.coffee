@@ -77,12 +77,17 @@ class SaveLoadView extends Backbone.View
     self = @
     @doIfEmailIsValid( ->
       self.setEmailDisplay()
+      window.shortList.saveAndSend self.email()
       self.close()
     , self)
 
   setEmailDisplay: ->
     @.$('.current_email').text(@email()).show()
     @.$('.list_label').hide()
+
+  setEmailFromUrlLoad: (email) ->
+    @email_input().attr('value', email)
+    @setEmailDisplay()
 
   validateEmail: (email) ->
     emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -108,5 +113,8 @@ class SaveLoadView extends Backbone.View
 
   showErrorMessage: (msg) ->
     alert(msg)
+
+  updateUrl: ->
+    window.history.pushState("object or string", "Load hottest100.io short list", "/#{@email()}")
 
 window.Hotmess.Views.SaveLoadView = SaveLoadView
