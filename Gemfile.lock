@@ -77,6 +77,8 @@ GEM
       padrino-core (= 0.10.7)
     pg (0.14.1)
     polyglot (0.3.3)
+    pony (1.4)
+      mail (> 2.0)
     pry (0.9.10)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -138,6 +140,7 @@ DEPENDENCIES
   padrino (= 0.10.7)
   padrino-sprockets!
   pg
+  pony
   pry
   pry-nav
   rabl

@@ -23,6 +23,11 @@ Padrino.before_load do
     ENV['current_year'] = dev['current_year']
     puts 'current_year'
     puts dev['current_year']
+
+    keys = YAML.load_file("config/keys.yaml")
+    keys.each do |k, v|
+      ENV[k] = v
+    end
   end
 end
 
@@ -30,6 +35,19 @@ end
 # Add your after load hooks here
 #
 Padrino.after_load do
+  #setup pony options for email
+  Pony.options = {
+    :via => :smtp,
+    :via_options => {
+      :address => 'smtp.sendgrid.net',
+      :port => '587',
+      :domain => 'heroku.com',
+      :user_name => ENV['SENDGRID_USERNAME'],
+      :password => ENV['SENDGRID_PASSWORD'],
+      :authentication => :plain,
+      :enable_starttls_auto => true
+    }
+  }
 end
 
 Padrino.load!

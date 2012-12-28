@@ -9,6 +9,9 @@ gem 'padrino', '0.10.7'
 gem 'activerecord', :require => "active_record"
 gem 'pg'
 
+#email
+gem 'pony'
+
 # Use Sprockets
 gem 'padrino-sprockets', :require => 'padrino/sprockets', :git => 'git://github.com/nightsailer/padrino-sprockets.git'
 
