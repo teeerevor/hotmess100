@@ -39,12 +39,26 @@ class window.Hotmess.Views.SongView extends Backbone.View
 
   add_to_short_list: ->
     window.shortList.add(@model)
+    @flash_song()
+    #catch
+      #show already in list error
+
 
   add_to_short_list_at: ->
     window.shortList.add(@model, {at: 0})
+    @flash_song()
+    #catch
+      #show already in list error
 
   remove_from_short_list: ->
     window.shortList.remove(@model)
+
+  flash_song: ->
+    song = @.$('.song_tab')
+    song.css('background-color', 'yellow')
+    setTimeout(->
+      song.removeAttr('style')
+    , 200)
 
   toggle_song: ->
     @user_opened = if @user_opened then false else true
