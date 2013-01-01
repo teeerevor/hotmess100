@@ -151,8 +151,9 @@ class window.Hotmess.Views.PlayerView extends Backbone.View
     $('.continuous').toggleClass('active')
     $('.shuffle').removeClass('active')
     switch @player_mode
-      when CONTINUOUS then @player_mode = REPEAT
-      when REPEAT then @player_mode = DEFAULT
+      #when CONTINUOUS then @player_mode = REPEAT
+      #when REPEAT then @player_mode = DEFAULT
+      when CONTINUOUS then @player_mode = DEFAULT
       else @player_mode = CONTINUOUS
     @show_player_mode()
 
