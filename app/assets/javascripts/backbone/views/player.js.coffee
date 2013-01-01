@@ -127,6 +127,7 @@ class window.Hotmess.Views.PlayerView extends Backbone.View
     @current_song().close()
     next_song.trigger 'open'
     @set_current_song(next_song.get('youtube_url'))
+    @update_player_display()
     @play_when_ready()
 
   previous: ->
@@ -136,6 +137,7 @@ class window.Hotmess.Views.PlayerView extends Backbone.View
     @current_song().close()
     next_song.trigger 'open'
     @set_current_song(next_song.get('youtube_url'))
+    @update_player_display()
     @play_when_ready()
 
   shuffle_next: ->
