@@ -1,25 +1,25 @@
 @import 'mixins.css.sass'
 
+=song_transition
+  -webkit-transition: background-color 0.3s linear
+  -moz-transition: background-color 0.3s linear
+  -ms-transition: background-color 0.3s linear
+  -o-transition: background-color 0.3s linear
+  transition: background-color 0.3s linear
+
+.transition
+
 .song
   .song_header:hover
     .song_tab
-      background-color: #ccc
-      //this bourbon plugin not working
-      //+transition(background-color, 0.5s, linear)
-      //used to flash color when song is added to
-      //short list
-      -webkit-transition: background-color 0.3s linear
-      -moz-transition: background-color 0.3s linear
-      -ms-transition: background-color 0.3s linear
-      -o-transition: background-color 0.3s linear
-      transition: background-color 0.3s linear
+      background-color: $song_hover_color
 
-    .song_tab:after
-      box-shadow: -2px 2px 0 #ccc
+    //.song_tab:after
+      //box-shadow: -2px 2px 0 $song_hover_color
 
 .highlight
   .song_extras
-    background-color: #ccc
+    background-color: $song_hover_color
 
 @mixin song_name
   display: inline-block
@@ -46,8 +46,11 @@
   .song_tab
     +box-flex(1)
     min-height: 40px
-    background-color: #eee
+    background-color: $song_base_color
     +border-radius( 10px)
+    +song_transition
+    //used to flash color when song is added to
+    //short list
 
   .song_details
     padding: 11px 10px 11px 20px
@@ -72,17 +75,19 @@
       border-bottom-left-radius: 0
       height: 45px
 
-    .song_tab:after
-      border: 1px solid #eee
-      position: absolute
-      bottom: -1px
-      width: 5px
-      height: 5px
-      content: " "
-      right: -6px
-      border-bottom-left-radius: 6px
-      border-width: 0 0 1px 1px
-      box-shadow: -2px 2px 0 #eee
+    //removed roundend inner corner near buttons for now
+    //.song_tab:after
+      //border: 1px solid $song_base_color
+      //position: absolute
+      //bottom: -1px
+      //width: 5px
+      //height: 5px
+      //content: " "
+      //right: -6px
+      //border-bottom-left-radius: 6px
+      //border-width: 0 0 1px 1px
+      //box-shadow: -2px 2px 0 $song_base_color
+      //+song_transition
 
     .song_extras
       display: block
@@ -90,11 +95,12 @@
 .song_extras
   display: none
   padding: 11px 20px
-  background-color: #eee
+  background-color: $song_base_color
   margin-bottom: 5px
   border-top-right-radius: 10px
   border-bottom-right-radius: 10px
   border-bottom-left-radius: 10px
+  +song_transition
 
   a
     text-decoration: none
@@ -106,7 +112,7 @@
     font-family: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif
     line-height: 1.2em
     &:hover
-      background-color: #ccc
+      background-color: $song_hover_color
       cursor: pointer
       -webkit-border-radius: 5px
       -moz-border-radius: 5px
