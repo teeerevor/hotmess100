@@ -75,7 +75,10 @@ class window.Hotmess.Views.SongView extends Backbone.View
   open: ->
     $(@el).addClass('expanded')
     yt_holder = @.$('.youtube_vid')
-    @load_youtube_vid(yt_holder, @model.get('youtube_url'))
+    if iOS
+      @load_youtube_iframe(yt_holder, @model)
+    else
+      @load_youtube_swf(yt_holder, @model.get('youtube_url'))
     yt_holder.fitVids()
     @song_open = true
 
@@ -85,8 +88,11 @@ class window.Hotmess.Views.SongView extends Backbone.View
       @.$('.youtube_vid').empty()
       @song_open = false
 
+  load_youtube_iframe: (yt_contianer, model) ->
+    yt_contianer.html(@youtube_template(model.toJSON()))
 
-  load_youtube_vid: (yt_container, yt_vid_id) ->
+
+  load_youtube_swf: (yt_container, yt_vid_id) ->
     hottestPlayer.open_song(yt_vid_id, @)
     yt_container.append("<div id='#{yt_vid_id}'></div>")
     params = { allowScriptAccess: "always" }
