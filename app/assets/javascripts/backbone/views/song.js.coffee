@@ -24,8 +24,13 @@ class window.Hotmess.Views.SongView extends Backbone.View
     @
 
   template: (model)->
+    #this helper is used for the index down the side
+    addToIndex = if @options.listType == 'song_list' then true else false
     Handlebars.registerHelper 'first_letter', (str)->
-      if str then str.charAt(0) else ''
+      if addToIndex  && str
+        str.charAt(0)
+      else
+        ''
     Handlebars.registerHelper 'song_name_trim', (str)->
       if str and str.length > 37
         return str.substring(0,34) + '...'
