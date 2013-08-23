@@ -24,9 +24,12 @@ Padrino.before_load do
     puts 'current_year'
     puts dev['current_year']
 
-    keys = YAML.load_file("config/keys.yaml")
-    keys.each do |k, v|
-      ENV[k] = v
+    key_file =  "config/keys.yaml"
+    if File.exist?(key_file)
+      keys = YAML.load_file(key_file)
+      keys.each do |k, v|
+        ENV[k] = v
+      end
     end
   end
 end
