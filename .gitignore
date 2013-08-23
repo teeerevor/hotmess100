@@ -1,5 +1,6 @@
 .DS_Store
 config/keys.yaml
+config/database.rb
 log/**/*
 tmp/**/*
 bin/*

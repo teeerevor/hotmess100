@@ -16,31 +16,28 @@
 ActiveRecord::Base.configurations[:development] = {
   :adapter   => 'postgresql',
   :database  => "hotmess100_dev",
-  :username  => 'user',
+  :username  => 'trev',
   :password  => '',
   :host      => 'localhost',
   :port      => 5432
-
 }
 
 ActiveRecord::Base.configurations[:production] = {
   :adapter   => 'postgresql',
-  :database  => "hotmess100_prod",
-  :username  => 'user',
-  :password  => '',
-  :host      => 'localhost',
-  :port      => 5432
-
+  :database  =>  ENV['db_name'],
+  :username  =>  ENV['db_user'],
+  :password  =>  ENV['db_pwd'],
+  :host      =>  ENV['db_host'],
+  :port      =>  5432
 }
 
 ActiveRecord::Base.configurations[:test] = {
   :adapter   => 'postgresql',
   :database  => "hotmess100_test",
-  :username  => 'user',
+  :username  => 'trev',
   :password  => '',
   :host      => 'localhost',
   :port      => 5432
-
 }
 
 # Setup our logger
