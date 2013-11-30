@@ -4,7 +4,8 @@ gem 'rake'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 
 # Padrino Stable Gem
-gem 'padrino', '0.10.7'
+gem 'padrino', '0.11.4'
+#gem 'padrino', :git => 'http://github.com/padrino/padrino-framework'
 
 gem 'activerecord', :require => "active_record"
 gem 'pg'
