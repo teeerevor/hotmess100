@@ -1,5 +1,9 @@
 Hotmess100.controllers '/' do
+  register Padrino::Cache
+  enable :caching
 
+  #get :songs,:map => '/songs(/:year)', :provides => [:html, :json], :cache => true do
+  #I want to cache this but padrino can't cache json at this time
   get :songs,:map => '/songs(/:year)', :provides => [:html, :json] do
     year = params[:year] || ENV['current_year']
     find_params = {conditions: {year: year}, include: 'artist', order: 'songs.name'}
@@ -34,11 +38,11 @@ Hotmess100.controllers '/' do
     end
   end
 
-  get :about do
+  get :about, :cache => true do
     render 'about', layout: 'static.html'
   end
 
-  get :index, :with => :year_or_email do
+  get :index, :with => :year_or_email, :cache => true do
     if params[:year_or_email] =~ /\d{4}/
       @year = params[:year_or_email]
     else
@@ -47,13 +51,13 @@ Hotmess100.controllers '/' do
     render 'songs/index'
   end
 
-  get :index, :with => [:year, :email] do
+  get :index, :with => [:year, :email], :cache => true do
     @year = params[:year]
     @email = params[:email]+ '.' + params[:format]
     render 'songs/index'
   end
 
-  get :index do
+  get :index, :cache => true do
     render 'songs/index'
   end
 end
