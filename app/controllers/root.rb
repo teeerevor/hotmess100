@@ -6,8 +6,7 @@ Hotmess100.controllers '/' do
   #I want to cache this but padrino can't cache json at this time
   get :songs,:map => '/songs(/:year)', :provides => [:html, :json] do
     year = params[:year] || ENV['current_year']
-    find_params = {conditions: {year: year}, include: 'artist', order: 'songs.name'}
-    @songs = Song.all(find_params)
+    @songs = Song.find_for_year(year)
 
     case content_type
     when :html
