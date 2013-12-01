@@ -3,6 +3,7 @@
   %head
     %title
       hottest100.io
+    = include_gon(:camel_case => true).html_safe
 
     = stylesheet_link_tag '/assets/application'
     = stylesheet_link_tag '/assets/ui-progress-bar'

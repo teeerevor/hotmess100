@@ -30,6 +30,8 @@ GEM
     diff-lcs (1.2.5)
     eventmachine (1.0.3)
     execjs (2.0.2)
+    gon-sinatra (0.1.0)
+      sinatra
     googleajax (1.0.1)
       json (>= 1.0.0)
     haml (4.0.4)
@@ -136,8 +138,10 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   coffee-script
+  gon-sinatra
   googleajax
   haml
+  json
   nokogiri
   padrino (= 0.11.4)
   padrino-sprockets!

@@ -1,4 +1,8 @@
 Hotmess100.controllers '/' do
+  register Gon::Sinatra
+  register Gon::Sinatra::Rabl
+  Rabl.register!
+
   register Padrino::Cache
   enable :caching
 
@@ -46,17 +50,25 @@ Hotmess100.controllers '/' do
       @year = params[:year_or_email]
     else
       @email = params[:year_or_email] + '.' + params[:format]
+      @year = nil
     end
+    @songs = Song.find_for_year(@year)
+    gon.songs = @songs
     render 'songs/index'
   end
 
   get :index, :with => [:year, :email], :cache => true do
     @year = params[:year]
     @email = params[:email]+ '.' + params[:format]
+    @songs = Song.find_for_year(@year)
+    gon.songs = @songs
     render 'songs/index'
   end
 
-  get :index, :cache => true do
+  get :index do
+    @songs = Song.find_for_year
+    #gon.songs = @songs
+    gon.rabl 'gon_templates/songs.rabl', :instance => self
     render 'songs/index'
   end
 end
